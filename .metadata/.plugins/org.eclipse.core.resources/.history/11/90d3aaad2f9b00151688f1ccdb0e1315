@@ -1,6 +1,0 @@
-
-public class Globals {
-	static int screenWidth;
-	static int screenHeight;
-	
-}
