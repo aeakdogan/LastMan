@@ -1,0 +1,26 @@
+import java.util.ArrayList;
+
+import javax.swing.JFrame;
+
+public class Framework {
+	private static JFrame frame;
+	private static ArrayLists<Menu> menu;
+	
+	public Framework(JFrame frame){
+		Framework.frame = frame;
+		frame.setTitle("Space Game");
+		frame.setSize(Settings.getWidth(), Settings.getHeight());
+		frame.setLocationRelativeTo(null);
+		frame.setResizable(false);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		menu = new ArrayList<Menu>();
+		menu.add(new MainMenu());
+		menu.add(new NewGameMenu());
+		menu.add(new SinglePlayerMenu());
+		menu.add(new LevelChooserMenu());
+		
+		frame.setContentPane(menu.get(0));
+		frame.setVisible(true);
+	}
+}

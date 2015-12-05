@@ -1,0 +1,18 @@
+import java.util.ArrayList;
+
+import javax.swing.JFrame;
+
+public class Framework {
+	private static JFrame frame;
+	
+	public Framework(JFrame frame){
+		Framework.frame = frame;
+		frame.setTitle("Last Man");
+		frame.setSize(1100,600);
+		frame.setLocationRelativeTo(null);
+		frame.setResizable(false);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		frame.setVisible(true);
+	}
+}
