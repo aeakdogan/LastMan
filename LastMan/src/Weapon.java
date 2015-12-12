@@ -46,6 +46,7 @@ public class Weapon implements LastManModel{
 		return time;
 	}
 	public void setTime(int time) {
+		if(time < 0) time = 0;
 		this.time = time;
 	}
 	public boolean isFirstType() {

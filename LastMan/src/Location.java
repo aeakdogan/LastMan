@@ -1,6 +1,8 @@
 
 public class Location {
 
+	//constants
+	public static final int BLOCK = 10;
 	//properties
 	private int x;
 	private int y;
@@ -26,5 +28,11 @@ public class Location {
 		this.y = y;
 	}
 	
-	
+	public boolean equals(Location l)
+	{
+		if(l.getX() == x && l.getY() == y)
+			return true;
+		return false;
+	}
+		
 }

@@ -25,7 +25,7 @@ public abstract class CharacterController
 	private Location calculateNewLocation(int dir)
 	{
 		Location newL = new Location(character.getLocation().getX(),character.getLocation().getY());
-		int move = character.getHero().getSpeed()*10;
+		int move = character.getHero().getSpeed()*Location.BLOCK/5;
 		
 		//up
 		if(dir == 1)
@@ -38,11 +38,13 @@ public abstract class CharacterController
 		{
 			newL.setX(newL.getX() + move);	
 		}
+		
 		//left
 		if(dir == 3)
 		{
 			newL.setX(newL.getX() - move);	
 		}
+		
 		//down
 		if(dir == 4)
 		{

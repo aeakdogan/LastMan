@@ -104,6 +104,7 @@ public class Character implements LastManModel
 	}
 
 	public void setNoWeaponOneUsageFor(int noWeaponOneUsageFor) {
+		if(noWeaponOneUsageFor < 0) noWeaponOneUsageFor = 0;
 		this.noWeaponOneUsageFor = noWeaponOneUsageFor;
 	}
 
@@ -112,6 +113,7 @@ public class Character implements LastManModel
 	}
 
 	public void setNoWeaponTwoUsageFor(int noWeaponTwoUsageFor) {
+		if(noWeaponTwoUsageFor < 0) noWeaponTwoUsageFor = 0;
 		this.noWeaponTwoUsageFor = noWeaponTwoUsageFor;
 	}
 

@@ -16,4 +16,8 @@ public class Game {
 	{
 	
 	}
+	public void change()
+	{
+	
+	}
 }
