@@ -7,7 +7,8 @@ public class Framework {
 	private static JFrame frame;
 	
 	static int MAIN_MENU_ID = 0;
-	static int SETTINGS_MENU_ID = 1;
+	static int NEW_GAME_ID = 1;
+	static int SETTINGS_MENU_ID = 2;
 	
 	private static ArrayList<JPanel> views;
 	
@@ -24,6 +25,7 @@ public class Framework {
 		
 		views = new ArrayList<JPanel>();
 		views.add(new MainMenu());
+		views.add(new GameView(new Game()));
 		views.add(new SettingsView(new Settings()));
 		
 		frame.setContentPane(views.get(MAIN_MENU_ID));

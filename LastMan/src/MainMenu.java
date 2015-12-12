@@ -82,6 +82,8 @@ public class MainMenu extends JPanel implements ActionListener {
 	}
 	public void actionPerformed(ActionEvent e){
 		int newFrame = 0;
+		if(e.getSource() == newGameButton)
+			newFrame = Framework.NEW_GAME_ID;
 		if(e.getSource() == settingsButton)
 			newFrame = Framework.SETTINGS_MENU_ID;
 		Framework.switchMenu(newFrame);
