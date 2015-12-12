@@ -2,7 +2,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.Scanner;
 
-public class Hero implements LastManModel {
+public class Hero{
 	
 	//properties
 	private int initialHealthPoints;

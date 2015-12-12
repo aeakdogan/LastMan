@@ -1,5 +1,5 @@
 
-public class Weapon implements LastManModel{
+public class Weapon {
 	
 	//properties
 	public final static int ONE_RANGE = 10;

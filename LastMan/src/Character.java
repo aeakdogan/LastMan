@@ -1,5 +1,5 @@
 
-public class Character implements LastManModel
+public class Character
 {
 	//constants
 	public static final int EASY = -3;
@@ -12,6 +12,7 @@ public class Character implements LastManModel
 	private int level;
 	private int noWeaponOneUsageFor;
 	private int noWeaponTwoUsageFor;	
+	private int deathTime;
 	private Hero hero;
 	private Game game;
 	
@@ -25,8 +26,10 @@ public class Character implements LastManModel
 		noWeaponTwoUsageFor = 0;
 		game = g;
 		location = new Location(0,0);
+		deathTime = -1;
 	}
 	
+
 	//methods
 	public boolean setWeaponOne()
 	{
@@ -131,6 +134,14 @@ public class Character implements LastManModel
 
 	public void setGame(Game game) {
 		this.game = game;
+	}
+
+	public int getDeathTime() {
+		return deathTime;
+	}
+
+	public void setDeathTime(int deathTime) {
+		this.deathTime = deathTime;
 	}
 
 }

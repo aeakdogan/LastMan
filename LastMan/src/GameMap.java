@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-import java.util.Map;
+import java.util.HashMap;
 
 public class GameMap {
 	
@@ -8,11 +8,18 @@ public class GameMap {
 	private static final int Y_BOUND = 800;
 	
 	//properties
-	private Game game;
 	private LMap map;
-	private Map<Location, Weapon> currentWeapons;
-	private Map<Location, Pack> currentPacks;
+	private HashMap<Location, Weapon> currentWeapons;
+	private HashMap<Location, Pack> currentPacks;
 	private ArrayList<Character> aliveCharacters;
+	
+	//constructor
+	public GameMap(String mapId)
+	{
+		map = new LMap(mapId);
+		currentWeapons = new HashMap<Location, Weapon>();
+		currentPacks = new HashMap<Location, Pack>();
+	}
 	
 	//methods
 	public ArrayList<Character> getCharactersIn(Location l, int range)
@@ -53,7 +60,6 @@ public class GameMap {
 		else
 			w.setTime(0);
 		currentWeapons.put(l, w);
-		game.change();
 		return true;
 	}
 	
@@ -67,7 +73,6 @@ public class GameMap {
 		
 		p.setTime(p.getDelayTime());
 		currentPacks.put(l, p);
-		game.change();
 		return true;
 	}
 	
@@ -79,7 +84,6 @@ public class GameMap {
 	public void removePackAt(Location l)
 	{
 		currentPacks.remove(l);
-		game.change();
 	}
 
 	public Weapon getWeaponAt(Location l)
@@ -90,7 +94,6 @@ public class GameMap {
 	public void removeWeaponAt(Location l)
 	{
 		currentWeapons.remove(l);
-		game.change();
 	}
 	
 	public void updateTimes(int elapsed)
