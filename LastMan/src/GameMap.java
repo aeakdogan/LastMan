@@ -163,4 +163,8 @@ public class GameMap {
 		
 		return newLoc;
 	}
+	
+	public LMap getMap(){
+		return map;
+	}
 }

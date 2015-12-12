@@ -63,9 +63,9 @@ public class GameView extends JPanel{
 			
 			//g.drawImage(wallImage,0,0,30,30,null);
 			if(wall.getResistance() == 1)
-				g.drawImage(wall1Image,wall.getLocation().y * cellSize,wall.getLocation().x * cellSize,cellSize,cellSize,null);
+				g.drawImage(wall1Image,wall.getLocation().getY() * cellSize,wall.getLocation().getX() * cellSize,cellSize,cellSize,null);
 			else
-				g.drawImage(wall2Image,wall.getLocation().y * cellSize,wall.getLocation().x * cellSize,cellSize,cellSize,null);
+				g.drawImage(wall2Image,wall.getLocation().getY() * cellSize,wall.getLocation().getX() * cellSize,cellSize,cellSize,null);
 		}
 		
 	}

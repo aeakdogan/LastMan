@@ -1,6 +1,7 @@
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 public class LMap 
@@ -10,8 +11,77 @@ public class LMap
 	private ArrayList<Wall> walls;
 	
 	//constructor
+	
+	public LMap(){
+		int mapHeight = 12;
+		int mapWidth = 18;
+		id = "dummy";
+		walls = new ArrayList<Wall>();
+		for(int i = 0 ; i < mapWidth; i++){
+			walls.add(new Wall(new Location(0, i), Wall.HARD));
+		}
+		for(int i = 0 ; i < mapWidth; i++){
+			walls.add(new Wall(new Location(mapHeight-1, i), Wall.HARD));
+		}
+		
+		for(int i = 0 ; i < mapHeight; i++){
+			walls.add(new Wall(new Location(i, 0), Wall.HARD));
+		}
+		for(int i = 0 ; i < mapHeight; i++){
+			walls.add(new Wall(new Location(i, mapWidth-1), Wall.HARD));
+		}
+		
+		for(int i = 2 ; i < mapHeight ; i+=2){
+			for(int j = 2 ; j < mapWidth ; j+=2){
+				walls.add(new Wall(new Location(i, j), Wall.HARD));
+			}
+		}
+		
+		for(int i = 0 ; i < 50; i++){
+			int randX = new Random().nextInt(mapHeight-2)+1;
+			int randY = new Random().nextInt(mapWidth-2)+1;
+			
+			if(randX %2 ==1 || randY %2 ==1)
+				walls.add(new Wall(new Location(randX, randY), Wall.SOFT));
+		}
+	}
+	
 	public LMap(String id)
 	{
+		if(id.equals("tmp")){
+			int mapHeight = 12;
+			int mapWidth = 18;
+			id = "dummy";
+			walls = new ArrayList<Wall>();
+			for(int i = 0 ; i < mapWidth; i++){
+				walls.add(new Wall(new Location(0, i), Wall.HARD));
+			}
+			for(int i = 0 ; i < mapWidth; i++){
+				walls.add(new Wall(new Location(mapHeight-1, i), Wall.HARD));
+			}
+			
+			for(int i = 0 ; i < mapHeight; i++){
+				walls.add(new Wall(new Location(i, 0), Wall.HARD));
+			}
+			for(int i = 0 ; i < mapHeight; i++){
+				walls.add(new Wall(new Location(i, mapWidth-1), Wall.HARD));
+			}
+			
+			for(int i = 2 ; i < mapHeight ; i+=2){
+				for(int j = 2 ; j < mapWidth ; j+=2){
+					walls.add(new Wall(new Location(i, j), Wall.HARD));
+				}
+			}
+			
+			for(int i = 0 ; i < 50; i++){
+				int randX = new Random().nextInt(mapHeight-2)+1;
+				int randY = new Random().nextInt(mapWidth-2)+1;
+				
+				if(randX %2 ==1 || randY %2 ==1)
+					walls.add(new Wall(new Location(randX, randY), Wall.SOFT));
+			}
+			return;
+		}
 		try 
 		{
 			Scanner mapInfo = new Scanner(new FileReader("maps.txt"));

@@ -19,6 +19,7 @@ public class Game {
 		deadCharacters = new ArrayList<Character>();
 		maxTime = -1;
 		state = false;
+		gameMap = new GameMap("tmp");
 	}
 	
 	//methods
