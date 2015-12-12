@@ -10,7 +10,7 @@ public class Settings {
 	public Settings(){
 		musicOn = true;
 		volume = 10;
-		view = null;
+		view = null;asdasdasd
 	}
 
 	//methods
