@@ -1,26 +1,40 @@
-import java.awt.Point;
-
-public class Wall {
-	int resistance;
-	Point location;
+public class Wall 
+{
+	//constants
+	public static final int HARD = 2;
+	public static final int SOFT = 1;
 	
-	public Wall(int resistance, int locationX, int locationY){
+	//properties
+	private Location location;
+	private int resistance;
+	
+	//constructor
+	public Wall(Location location, int resistance) 
+	{
+		this.location = location;
 		this.resistance = resistance;
-		this.location = new Point(locationX, locationY);
 	}
 	
-	public void setResistance( int resistance){
-		this.resistance = resistance;
-	}
-	public void setLocation(int locationX, int locationY){
-		this.location = new Point(locationX, locationY);
-	}
-	
-	public int getResistance(){
-		return resistance;
-	}
-	public Point getLocation(){
+	//methods
+	public Location getLocation() 
+	{
 		return location;
 	}
+
+	public void setLocation(Location location)
+	{
+		this.location = location;
+	}
+
+	public int getResistance()
+	{
+		return resistance;
+	}
+
+	public void setResistance(int resistance) 
+	{
+		this.resistance = resistance;
+	}
 	
+
 }
