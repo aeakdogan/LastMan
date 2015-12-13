@@ -15,6 +15,7 @@ import javax.swing.event.ChangeListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JSlider; 
+import javax.swing.ImageIcon; 
 
 public class SettingsView extends JPanel implements ActionListener, ChangeListener{
 	private static final long serialVersionUID = 5786938794922429875L;
@@ -45,23 +46,27 @@ public class SettingsView extends JPanel implements ActionListener, ChangeListen
 		settingsLabel.setSize(100,100);
 		settingsLabel.setText("SETTINGS");
 		settingsLabel.setFont(new Font("Segoe UI", Font.BOLD|Font.BOLD, 20));
-		settingsLabel.setForeground(Color.GREEN);
+		settingsLabel.setForeground(Color.BLUE);
 		settingsLabel.setLocation(400,0);
 		infoPanel.add( settingsLabel );
 		
-		menuButton = new JButton("MAIN MENU");
+		menuButton = new JButton("MAIN MENU",new ImageIcon("ButtonBlueToUse.png"));
 		menuButton.setSize(180,60);
 		menuButton.setLocation(900,500);
-		menuButton.setBackground(Color.GREEN);
+		menuButton.setHorizontalTextPosition(JButton.CENTER);
+		menuButton.setVerticalTextPosition(JButton.CENTER); 
+		menuButton.setForeground(Color.BLACK); 
+		menuButton.setBackground(Color.BLACK);
 		menuButton.setFont(new Font("Segoe UI", Font.BOLD|Font.BOLD, 20));
 		menuButton.addActionListener((ActionListener) this);
+		menuButton.setBorderPainted(false);
 		infoPanel.add(menuButton); 
 		
 		volumeLabel = new JLabel();
 		volumeLabel.setSize(400,400);
 		volumeLabel.setText( "Volume: " + settings.getVolume() );
 		volumeLabel.setFont(new Font("Segoe UI", Font.BOLD|Font.BOLD, 20));
-		volumeLabel.setForeground(Color.GREEN);
+		volumeLabel.setForeground(Color.BLUE);
 		volumeLabel.setLocation(300,100);
 		infoPanel.add( volumeLabel );
 		

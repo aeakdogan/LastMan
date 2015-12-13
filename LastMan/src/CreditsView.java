@@ -10,6 +10,7 @@ import javax.swing.event.ChangeListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextArea; 
+import javax.swing.ImageIcon; 
 
 public class CreditsView extends JPanel implements ActionListener{
 
@@ -32,11 +33,15 @@ public class CreditsView extends JPanel implements ActionListener{
 		creditsText.setLocation(350, 100);
 		
 	
-		menuButton = new JButton("MAIN MENU");
+		menuButton = new JButton("MAIN MENU",new ImageIcon("ButtonYellowToUse.png"));
 		menuButton.setSize(180,60);
 		menuButton.setLocation(900,500);
-		menuButton.setBackground(Color.YELLOW);
+		menuButton.setHorizontalTextPosition(JButton.CENTER);
+		menuButton.setVerticalTextPosition(JButton.CENTER);
+		menuButton.setForeground(Color.BLACK); 
+		menuButton.setBackground(Color.BLACK);
 		menuButton.setFont(new Font("Segoe UI", Font.BOLD|Font.BOLD, 20));
+		menuButton.setBorderPainted(false);
 		menuButton.addActionListener((ActionListener) this);
 		
 		infoPanel.add(creditsText);
