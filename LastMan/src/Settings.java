@@ -1,4 +1,5 @@
-public class Settings {
+public class Settings 
+{
 	
 	//properties
 	private boolean musicOn;

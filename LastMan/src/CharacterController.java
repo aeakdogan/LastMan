@@ -48,7 +48,7 @@ public abstract class CharacterController
 		//down
 		if(dir == 4)
 		{
-			newL.setX(newL.getY() + move);	
+			newL.setY(newL.getY() + move);	
 		}
 		
 		return newL;		

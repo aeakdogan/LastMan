@@ -13,6 +13,14 @@ public class GameMap {
 	private HashMap<Location, Pack> currentPacks;
 	private ArrayList<Character> aliveCharacters;
 	
+	public LMap getMap() {
+		return map;
+	}
+
+	public void setMap(LMap map) {
+		this.map = map;
+	}
+
 	//constructor
 	public GameMap(String mapId)
 	{

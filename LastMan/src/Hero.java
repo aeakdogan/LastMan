@@ -16,6 +16,7 @@ public class Hero{
 	{
 		try 
 		{
+			this.id = id;
 			Scanner heroInfo = new Scanner(new FileReader("heroes.txt"));
 			boolean created = false;
 			String test;
@@ -36,7 +37,7 @@ public class Hero{
 			
 			if(!created)
 			{
-				//handle error
+				System.out.println("Error");
 			}
 			
 		} catch (FileNotFoundException e) {

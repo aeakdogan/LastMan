@@ -14,6 +14,8 @@ public class LMap
 	{
 		try 
 		{
+			this.id = id;
+			walls = new ArrayList<Wall>();
 			Scanner mapInfo = new Scanner(new FileReader("maps.txt"));
 			String test;
 			do
@@ -21,11 +23,20 @@ public class LMap
 				test = mapInfo.next();
 			}while(!test.equals(id));
 			
-			int value = mapInfo.nextInt();
-			while(value != -1)
+			for(int x = 0; x < 22; x++)
 			{
-				walls.add(new Wall(new Location(value, mapInfo.nextInt()), mapInfo.nextInt()));
-				value = mapInfo.nextInt();
+				for(int y = 0; y < 11; y++)
+				{
+					int value = mapInfo.nextInt();
+					if(value == 1)
+					{
+						walls.add(new Wall(new Location(x*40, y*40), 1));
+					}
+					if(value == 2)
+					{
+						walls.add(new Wall(new Location(x*40, y*40), 2));
+					}
+				}
 			}
 						
 			mapInfo.close();	
