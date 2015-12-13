@@ -3,6 +3,7 @@ public class Location {
 
 	//constants
 	public static final int BLOCK = 10;
+	
 	//properties
 	private int x;
 	private int y;

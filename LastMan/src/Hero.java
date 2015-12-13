@@ -16,7 +16,7 @@ public class Hero{
 	{
 		try 
 		{
-			Scanner heroInfo = new Scanner(new FileReader("heroes.txt"));
+			Scanner heroInfo = new Scanner(new FileReader("assets\\heroes.txt"));
 			boolean created = false;
 			String test;
 			do

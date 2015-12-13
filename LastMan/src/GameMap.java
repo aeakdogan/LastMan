@@ -11,11 +11,13 @@ public class GameMap {
 	private LMap map;
 	private HashMap<Location, Weapon> currentWeapons;
 	private HashMap<Location, Pack> currentPacks;
-	private ArrayList<Character> aliveCharacters;
+
+	private Game game;
 	
 	//constructor
-	public GameMap(String mapId)
+	public GameMap(String mapId, Game game)
 	{
+		this.game = game;
 		map = new LMap(mapId);
 		currentWeapons = new HashMap<Location, Weapon>();
 		currentPacks = new HashMap<Location, Pack>();
@@ -26,7 +28,7 @@ public class GameMap {
 	{
 		ArrayList<Character> chars = new ArrayList<Character>();
 		int distance;
-		for(Character c: aliveCharacters)
+		for(Character c: game.getAliveCharacters())
 		{
 			distance = (int)Math.sqrt(Math.pow(l.getX() - c.getLocation().getX(), 2) + Math.pow(l.getY() - c.getLocation().getY(), 2));
 			if(distance < range)
@@ -98,7 +100,7 @@ public class GameMap {
 	
 	public void updateTimes(int elapsed)
 	{
-		for (Character c : aliveCharacters)
+		for (Character c : game.getAliveCharacters())
 		{
 			c.setNoWeaponOneUsageFor(c.getNoWeaponOneUsageFor() - elapsed);
 			c.setNoWeaponTwoUsageFor(c.getNoWeaponTwoUsageFor() - elapsed);
@@ -148,6 +150,7 @@ public class GameMap {
 			if(wall.getResistance() == Wall.SOFT)
 				map.removeWall(wall);
 		}		
+		removeWeaponAt(l);
 	}
 	
 	public Location validateLocation(Location newLoc) 
@@ -166,5 +169,20 @@ public class GameMap {
 	
 	public LMap getMap(){
 		return map;
+	}
+	public HashMap<Location, Weapon> getCurrentWeapons() {
+		return currentWeapons;
+	}
+
+	public void setCurrentWeapons(HashMap<Location, Weapon> currentWeapons) {
+		this.currentWeapons = currentWeapons;
+	}
+
+	public HashMap<Location, Pack> getCurrentPacks() {
+		return currentPacks;
+	}
+
+	public void setCurrentPacks(HashMap<Location, Pack> currentPacks) {
+		this.currentPacks = currentPacks;
 	}
 }

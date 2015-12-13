@@ -19,7 +19,17 @@ public class Game {
 		deadCharacters = new ArrayList<Character>();
 		maxTime = -1;
 		state = false;
-		gameMap = new GameMap("tmp");
+		currentTime = 0;
+		gameMap = new GameMap("tmp",this);
+		
+		
+		aliveCharacters = new ArrayList<Character>();
+		
+		
+		Character pl = new Character("kil", Character.HARD, this);
+		aliveCharacters.add(pl);
+		setPlayer(pl);
+		
 	}
 	
 	//methods
@@ -60,7 +70,7 @@ public class Game {
 	{
 		currentTime++;
 		gameMap.updateTimes(elapsed);
-		updateView();
+		view.updateView();
 		for(Character c : aliveCharacters)
 		{
 			if(c.gethP() <= 0)
@@ -136,10 +146,5 @@ public class Game {
 
 	public void setGameMap(GameMap gameMap) {
 		this.gameMap = gameMap;
-	}
-	
-	public void updateView()
-	{
-	
 	}
 }

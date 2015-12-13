@@ -19,12 +19,14 @@ public class Framework {
 		frame.setTitle("Last Man");
 		frame.setSize(1100,600);
 		frame.setLocationRelativeTo(null);
-		frame.setResizable(false);
+		frame.setResizable(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		
 		views = new ArrayList<JPanel>();
 		views.add(new MainMenu());
+		
+		
 		views.add(new GameView(new Game()));
 		views.add(new SettingsView(new Settings()));
 		views.add(new HelpView()); 

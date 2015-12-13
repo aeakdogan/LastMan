@@ -25,7 +25,7 @@ public class Character
 		noWeaponOneUsageFor = 0;
 		noWeaponTwoUsageFor = 0;
 		game = g;
-		location = new Location(0,0);
+		location = new Location(40,40);
 		deathTime = -1;
 	}
 	

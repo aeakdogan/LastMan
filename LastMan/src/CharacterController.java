@@ -1,6 +1,12 @@
 
 public abstract class CharacterController 
 {
+
+	public static int DIRECTION_UP = 1;
+	public static int DIRECTION_RIGHT = 2;
+	public static int DIRECTION_LEFT = 3;
+	public static int DIRECTION_DOWN = 4;
+	
 	//properties
 	protected Character character;
 	
@@ -26,29 +32,30 @@ public abstract class CharacterController
 	{
 		Location newL = new Location(character.getLocation().getX(),character.getLocation().getY());
 		int move = character.getHero().getSpeed()*Location.BLOCK/5;
+		//int move = character.getHero().getSpeed();
 		
 		//up
-		if(dir == 1)
+		if(dir == DIRECTION_UP)
 		{
 			newL.setY(newL.getY() - move );	
 		}
 		
 		//right
-		if(dir == 2)
+		if(dir == DIRECTION_RIGHT)
 		{
 			newL.setX(newL.getX() + move);	
 		}
 		
 		//left
-		if(dir == 3)
+		if(dir == DIRECTION_LEFT)
 		{
 			newL.setX(newL.getX() - move);	
 		}
 		
 		//down
-		if(dir == 4)
+		if(dir == DIRECTION_DOWN)
 		{
-			newL.setX(newL.getY() + move);	
+			newL.setY(newL.getY() + move);	
 		}
 		
 		return newL;		
