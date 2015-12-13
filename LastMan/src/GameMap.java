@@ -14,6 +14,14 @@ public class GameMap {
 
 	private Game game;
 	
+	public LMap getMap() {
+		return map;
+	}
+
+	public void setMap(LMap map) {
+		this.map = map;
+	}
+
 	//constructor
 	public GameMap(String mapId, Game game)
 	{
@@ -167,9 +175,6 @@ public class GameMap {
 		return newLoc;
 	}
 	
-	public LMap getMap(){
-		return map;
-	}
 	public HashMap<Location, Weapon> getCurrentWeapons() {
 		return currentWeapons;
 	}

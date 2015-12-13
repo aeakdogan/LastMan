@@ -28,11 +28,19 @@ public class GameController
 	
 	private boolean isValidTimer(int t)
 	{
-		if(t > 10 && t < 300)
+		if(t > 30 && t < 300)
 			return true;
 		return false;
 	}
 	
+	public Game getGame() {
+		return game;
+	}
+
+	public void setGame(Game game) {
+		this.game = game;
+	}
+
 	public boolean timerSelected(int t)
 	{
 		if (!isValidTimer(t))

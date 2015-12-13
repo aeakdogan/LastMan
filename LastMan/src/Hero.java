@@ -17,6 +17,7 @@ public class Hero{
 		try 
 		{
 			Scanner heroInfo = new Scanner(new FileReader("assets\\heroes.txt"));
+			this.id = id;
 			boolean created = false;
 			String test;
 			do
@@ -36,7 +37,7 @@ public class Hero{
 			
 			if(!created)
 			{
-				//handle error
+				System.out.println("Error");
 			}
 			
 		} catch (FileNotFoundException e) {

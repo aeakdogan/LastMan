@@ -5,59 +5,52 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import javax.swing.JPanel;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JTextArea; 
-import javax.swing.ImageIcon; 
+import javax.swing.JTextArea;
+import javax.swing.BoxLayout; 
 
-public class CreditsView extends JPanel implements ActionListener{
+public class CreditsView extends JPanel implements ActionListener
+{
 
-	private JPanel infoPanel; 
+	private static final long serialVersionUID = -4983868374121854280L;
 	private JTextArea creditsText; 
 	private JButton menuButton; 
+	private GameFrame frame;
 	
-	public CreditsView() {
+	public CreditsView(GameFrame frame) 
+	{
+		this.frame = frame;		
+		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS)); 
+		setPreferredSize(new Dimension(1100,600)); 
+		setBackground(Color.BLACK);	
 		
-		infoPanel = new JPanel(); 
-		infoPanel.setLayout(null);
-		infoPanel.setPreferredSize(new Dimension(1100,600)); 
-		infoPanel.setBackground(Color.BLACK);	
-		
-		creditsText = new JTextArea("ENES AKDOÐAN\n\nBURCU ÇANAKÇI\n\nYASEMÝN DOÐANCI\n\nÖZGÜR TAÞOLUK");
+		creditsText = new JTextArea("ENES AKDOï¿½AN\n\nBURCU ï¿½ANAKï¿½I\n\nYASEMï¿½N DOï¿½ANCI\n\nï¿½ZGï¿½R TAï¿½OLUK");
 		creditsText.setFont(new Font("Segoe UI", Font.BOLD|Font.BOLD, 20));
 		creditsText.setSize(400,400);
 		creditsText.setForeground(Color.YELLOW);
 		creditsText.setBackground(Color.BLACK);
-		creditsText.setLocation(350, 100);
 		
 	
-		menuButton = new JButton("MAIN MENU",new ImageIcon("ButtonYellowToUse.png"));
+		menuButton = new JButton("Main Menu");
 		menuButton.setSize(180,60);
-		menuButton.setLocation(900,500);
 		menuButton.setHorizontalTextPosition(JButton.CENTER);
 		menuButton.setVerticalTextPosition(JButton.CENTER);
-		menuButton.setForeground(Color.BLACK); 
+		menuButton.setForeground(Color.YELLOW); 
 		menuButton.setBackground(Color.BLACK);
 		menuButton.setFont(new Font("Segoe UI", Font.BOLD|Font.BOLD, 20));
 		menuButton.setBorderPainted(false);
-		menuButton.addActionListener((ActionListener) this);
+		menuButton.addActionListener(this);
 		
-		infoPanel.add(creditsText);
-		infoPanel.add(menuButton);
-	
-		
-		this.add(infoPanel);
-		setVisible(true); 
-		
+		add(creditsText);
+		add(menuButton);		
 	}
 	
-	public void actionPerformed(ActionEvent e){
-		int newFrame = 4;
+	public void actionPerformed(ActionEvent e)
+	{
 		if(e.getSource() == menuButton)
-			newFrame = Framework.MAIN_MENU_ID;
-		Framework.switchMenu(newFrame);
+		{
+			frame.getLayout().show(frame.getCards(), "main");
+		}
 	}
 	
 	public void paintComponent(Graphics  g){
@@ -66,4 +59,3 @@ public class CreditsView extends JPanel implements ActionListener{
 	}
 	
 }
-	

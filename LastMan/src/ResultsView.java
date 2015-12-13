@@ -14,13 +14,13 @@ import javax.swing.event.ChangeListener;
 import javax.swing.JButton;
 
 
-public class ResultsView {
+public class ResultsView extends JPanel{
 
 	private JPanel displayPanel; 
 	private JButton goBackToMainButton; 
 	
 	
-	public ResultsScreen(String gameData){
+	public ResultsView(String gameData){
 		
 		
 	}
