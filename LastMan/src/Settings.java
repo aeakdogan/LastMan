@@ -9,7 +9,7 @@ public class Settings {
 	//constructor
 	public Settings(){
 		musicOn = true;
-		volume = 10;
+		volume = 5;
 		view = null;
 	}
 

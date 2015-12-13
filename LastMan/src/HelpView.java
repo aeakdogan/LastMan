@@ -15,7 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JButton; 
 import javax.swing.JTextArea; 
 
-public class HelpView extends JPanel {
+public class HelpView extends JPanel implements ActionListener {
 
 	//Properties
 	private JPanel infoPanel; 
@@ -23,8 +23,6 @@ public class HelpView extends JPanel {
 	private JButton menuButton; 
 	
 	public HelpView(){
-
-		Font font = new Font("Verdana", Font.BOLD, 20); 
 		
 		infoPanel = new JPanel(); 
 		infoPanel.setLayout(null);
@@ -33,16 +31,17 @@ public class HelpView extends JPanel {
 		
 		helpText = new JTextArea("HELP\nUse arrow keys to move your character.\n"+ "Use K button to use weapon.\n" + "Use J button to use special weapon."); 
 		helpText.setSize(400,400);
-		helpText.setForeground(Color.GREEN);
+		helpText.setForeground(Color.RED);
 		helpText.setBackground(Color.BLACK);
 		helpText.setLocation(350, 100);
-		helpText.setFont(font);
+		helpText.setFont(new Font("Segoe UI", Font.BOLD|Font.BOLD, 20));
 	
-		menuButton = new JButton("Main Menu");
+		menuButton = new JButton("MAIN MENU");
 		menuButton.setSize(180,60);
 		menuButton.setLocation(900,500);
-		menuButton.setBackground(Color.GREEN);
-		
+		menuButton.setBackground(Color.RED);
+		menuButton.setFont(new Font("Segoe UI", Font.BOLD|Font.BOLD, 20));
+		menuButton.addActionListener((ActionListener) this);
 		
 		infoPanel.add(helpText);
 		infoPanel.add(menuButton); 
@@ -53,7 +52,12 @@ public class HelpView extends JPanel {
 		
 	}
 	
-	
+	public void actionPerformed(ActionEvent e){
+		int newFrame = 3;
+		if(e.getSource() == menuButton)
+			newFrame = Framework.MAIN_MENU_ID;
+		Framework.switchMenu(newFrame);
+	}
 	public void paintComponent(Graphics  g){
 		super.paintComponent((java.awt.Graphics) g);
 		

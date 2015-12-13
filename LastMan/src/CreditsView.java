@@ -11,44 +11,48 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextArea; 
 
-public class CreditsView extends JPanel{
+public class CreditsView extends JPanel implements ActionListener{
 
 	private JPanel infoPanel; 
 	private JTextArea creditsText; 
 	private JButton menuButton; 
 	
-	public CreditsView(){
+	public CreditsView() {
 		
 		infoPanel = new JPanel(); 
 		infoPanel.setLayout(null);
 		infoPanel.setPreferredSize(new Dimension(1100,600)); 
-		infoPanel.setBackground(Color.BLACK);
-		
-		
-		Font font = new Font("Verdana", Font.BOLD, 20); 
+		infoPanel.setBackground(Color.BLACK);	
 		
 		creditsText = new JTextArea("ENES AKDO–AN\n\nBURCU «ANAK«I\n\nYASEM›N DO–ANCI\n\n÷ZG‹R TAﬁOLUK");
+		creditsText.setFont(new Font("Segoe UI", Font.BOLD|Font.BOLD, 20));
 		creditsText.setSize(400,400);
 		creditsText.setForeground(Color.YELLOW);
 		creditsText.setBackground(Color.BLACK);
 		creditsText.setLocation(350, 100);
-		creditsText.setFont(font);
 		
 	
-		menuButton = new JButton("Main Menu");
+		menuButton = new JButton("MAIN MENU");
 		menuButton.setSize(180,60);
 		menuButton.setLocation(900,500);
 		menuButton.setBackground(Color.YELLOW);
+		menuButton.setFont(new Font("Segoe UI", Font.BOLD|Font.BOLD, 20));
+		menuButton.addActionListener((ActionListener) this);
 		
 		infoPanel.add(creditsText);
 		infoPanel.add(menuButton);
 	
 		
 		this.add(infoPanel);
-	
 		setVisible(true); 
 		
-		
+	}
+	
+	public void actionPerformed(ActionEvent e){
+		int newFrame = 4;
+		if(e.getSource() == menuButton)
+			newFrame = Framework.MAIN_MENU_ID;
+		Framework.switchMenu(newFrame);
 	}
 	
 	public void paintComponent(Graphics  g){
