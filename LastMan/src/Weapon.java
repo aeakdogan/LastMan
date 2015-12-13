@@ -3,7 +3,7 @@ public class Weapon {
 	
 	//properties
 	public final static int ONE_RANGE = 10;
-	public final static int ONE_DELAY = 20;
+	public final static int ONE_DELAY = 3;
 			
 	private int range;
 	private int damage;

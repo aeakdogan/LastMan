@@ -23,7 +23,7 @@ public class GameController
 	
 	public void mapSelected(String mapId)
 	{
-		game.setGameMap(new GameMap(mapId));
+		game.setGameMap(new GameMap(mapId,game));
 	}
 	
 	private boolean isValidTimer(int t)

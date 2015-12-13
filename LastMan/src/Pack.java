@@ -15,6 +15,14 @@ public class Pack {
 	
 	public Pack(String id)
 	{
+		if(id.equals("healthBoost")){
+			delayTime = 5;
+			return;
+		}
+		if(id.equals("weaponOneBoost")){
+			delayTime = 5;
+			return;
+		}
 		try 
 		{
 			Scanner packInfo = new Scanner(new FileReader("packs.txt"));
