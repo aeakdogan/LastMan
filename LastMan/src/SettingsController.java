@@ -6,23 +6,13 @@ public class SettingsController
 	{
 		this.settings = settings;
 	}
-
-	public Settings getSettings() 
-	{
-		return settings;
-	}
-
-	public void setSettings(Settings settings) 
-	{
-		this.settings = settings;
-	}
 	
-	public void setVolume(int value)
+	public void volumeChanged(int value)
 	{
 		settings.setVolume(value);
 	}
 	
-	public void setMusicOn(boolean value)
+	public void musicOnChanged(boolean value)
 	{
 		settings.setMusicOn(value);
 	}
