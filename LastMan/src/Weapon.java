@@ -1,11 +1,13 @@
 
-public class Weapon {
+public class Weapon 
+{
 	
-	//properties
+	//constants
 	public final static int ONE_RANGE = 2*Location.CELL;
 	public final static int ONE_DELAY = 7;
 	public final static int TWO_DELAY = 2;
-			
+	
+	//properties
 	private int range;
 	private int damage;
 	private int delayTime;
@@ -21,7 +23,7 @@ public class Weapon {
 		this.damage = damage;
 		this.delayTime = delayTime;
 		this.firstType = firstType;
-		setCharacter(null);
+		character = null;
 	}
 	
 	
