@@ -149,6 +149,11 @@ public class GameCreatorView extends JPanel implements ActionListener, LastManVi
 		cl.show(this, "bot");
 	}
 
+	/**
+	 * initializeList method is used for reading the Hero specifications from the file, reading map 
+	 * information from the file, and throws an IO exception if the input file is not found.  
+	 * 
+	 */
 	private void initializeLists() 
 	{
 		try 
@@ -178,6 +183,9 @@ public class GameCreatorView extends JPanel implements ActionListener, LastManVi
 		}	
 	}
 
+	/* 
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) 
 	{
@@ -241,6 +249,9 @@ public class GameCreatorView extends JPanel implements ActionListener, LastManVi
 		}
 	}
 
+	/* 
+	 * @see LastManView#updateView()
+	 */
 	@Override
 	public void updateView() 
 	{

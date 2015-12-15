@@ -10,6 +10,10 @@ import LMGraphics.LMPanel;
 import LMGraphics.LMTextArea;
 import javax.swing.BoxLayout; 
 
+/**
+ * @author Yasemin Doganci
+ * HelpView class is used for the view of Help page. It has a JPanel to show its contents. 
+ */
 public class HelpView extends JPanel implements ActionListener
 {
 	//Constants
@@ -19,7 +23,12 @@ public class HelpView extends JPanel implements ActionListener
 	private LMButton menuButton; 
 	private GameFrame frame;
 	
-	//Constructor
+	
+	/**
+	 * @param frame 
+	 * HelpView constructor is used for initializing this frame. JPanel pan1 has a TextArea in it,
+	 * in order to show its contents as a String.  
+	 */
 	public HelpView(GameFrame frame)
 	{
 		
@@ -49,7 +58,11 @@ public class HelpView extends JPanel implements ActionListener
 		add(pan2); 		
 	}
 	
-	//Methods
+	
+	/* 
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 * actionPerformed method is used for clicking the menu button. 
+	 */
 	public void actionPerformed(ActionEvent e)
 	{
 		if(e.getSource() == menuButton)
@@ -57,6 +70,10 @@ public class HelpView extends JPanel implements ActionListener
 			frame.getLayout().show(frame.getCards(), "main");
 		}
 	}
+	
+	/* 
+	 * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
+	 */
 	public void paintComponent(Graphics  g)
 	{
 		super.paintComponent((java.awt.Graphics) g);

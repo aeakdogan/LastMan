@@ -16,6 +16,13 @@ import LMGraphics.LMButton;
 import LMGraphics.LMLabel;
 import LMGraphics.LMPanel; 
 
+/**
+ * @author Yasemin Doganci
+ * SettingsView Class is used for updating the view of the Settings object.
+ * It has a Settings object and a GameFrame object in it, which are used for updating the view. 
+ * It also has a JSlider, JToggleButton and JButton. 
+ *
+ */
 public class SettingsView extends JPanel implements ActionListener, LastManView, ChangeListener
 {
 	private static final long serialVersionUID = 5786938794922429875L;
@@ -28,7 +35,15 @@ public class SettingsView extends JPanel implements ActionListener, LastManView,
 	private LMButton menuButton;
 	private GameFrame frame;
 	
-	//Constructor
+
+	/**
+	 * @param settings
+	 * @param frame
+	 * Constructor initializes the parameters and sets the view to this settings. 
+	 * JPanel pan1 has a JSlider for showing the volume and a JToggleButton for showing whether 
+	 * the music is on or off. It also has a JButton menuButton which is used to go back to main menu 
+	 * of the game. 
+	 */
 	public SettingsView(Settings settings, GameFrame frame)
 	{
 		this.settings = settings;
@@ -77,18 +92,27 @@ public class SettingsView extends JPanel implements ActionListener, LastManView,
 		add(pan3);
 	}
 	
-	//Methods
+	
+	/* 
+	 * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
+	 */
 	public void paintComponent( Graphics g )
 	{
 		super.paintComponent((java.awt.Graphics) g);
 	}	
 	
+	/* 
+	 * @see LastManView#updateView()
+	 */
 	public void updateView()
 	{
 		soundSlider.setValue(settings.getVolume());
 		music.setSelected(settings.isMusicOn());
 	}
 
+	/* 
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
