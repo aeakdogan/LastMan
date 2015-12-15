@@ -192,7 +192,7 @@ public class GameView extends JPanel implements ActionListener, LastManView
 	}
 	
 	/**
-	 * @author Enes
+	 * @author Enes Akdogan
 	 *
 	 * GamePanel class is a nested class of GameView
 	 * its responsible for view of the game map and draws wall,characters, weapon and packs
@@ -308,8 +308,12 @@ public class GameView extends JPanel implements ActionListener, LastManView
 		}
 	}
 	
-	//http://helpdesk.objects.com.au/java/how-to-control-volume-of-audio-clip
-	//http://stackoverflow.com/questions/23986793/java-playing-a-sound-on-top-of-background-music
+	
+	/**
+	 * @author 	//http://stackoverflow.com/questions/23986793/java-playing-a-sound-on-top-of-background-music
+	 * internal class to play audio
+	 * used : http://helpdesk.objects.com.au/java/how-to-control-volume-of-audio-clip
+	 */
 	private class Sound
 	{
 	    private AudioInputStream ais = null;

@@ -96,7 +96,7 @@ public class SettingsView extends JPanel implements ActionListener, LastManView,
 	/* 
 	 * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
 	 */
-	public void paintComponent( Graphics g )
+	public void paintComponent(Graphics g)
 	{
 		super.paintComponent((java.awt.Graphics) g);
 	}	
@@ -122,6 +122,9 @@ public class SettingsView extends JPanel implements ActionListener, LastManView,
 			frame.getLayout().show(frame.getCards(), "main");
 	}
 	
+	/* 
+	 * @see javax.swing.event.ChangeListener#stateChanged(javax.swing.event.ChangeEvent)
+	 */
 	@Override
 	public void stateChanged(ChangeEvent e) 
 	{
