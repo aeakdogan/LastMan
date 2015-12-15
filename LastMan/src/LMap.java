@@ -3,6 +3,12 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * @author Burcu Canakci
+ * 
+ * LMap class initialize the map of the game and holds the properties of the map
+ * 
+ */
 public class LMap 
 {
 	//Properties
@@ -10,6 +16,14 @@ public class LMap
 	private ArrayList<Wall> walls;
 	
 	//Constructor
+	/**
+	 * Constructor of the LMap class initialize map of the game
+	 * @param id unique ID of maps
+	 * 
+	 * constructor reads all maps from the file
+	 * and take walls of the map with this id 
+	 * 
+	 */
 	public LMap(String id)
 	{
 		try 
@@ -61,6 +75,11 @@ public class LMap
 		return walls;
 	}
 	
+	/**
+	 * @param w
+	 * remove wall of w from current walls
+	 * 
+	 */
 	public void removeWall(Wall w)
 	{
 		walls.remove(w);

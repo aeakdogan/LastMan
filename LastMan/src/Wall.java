@@ -1,3 +1,9 @@
+/**
+ * @author Burcu Canakci
+ * 
+ * Wall class holds properties of walls, these properties are location and resistance of wall
+ * 	
+ */
 public class Wall 
 {
 	//Constants

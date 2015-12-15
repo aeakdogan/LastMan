@@ -2,6 +2,13 @@ import java.awt.CardLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+/**
+ * @author Burcu Canakci
+ *
+ * GameFrame class is framework of LastMan game
+ * this class initialize game window and switches the views of the game by using Card Layout
+ * 
+ */
 public class GameFrame extends JFrame
 {
 
