@@ -2,7 +2,7 @@ public class Weapon
 {
 	//Constants
 	public final static int ONE_RANGE = 2*Location.CELL;
-	public final static int ONE_DELAY = 5;
+	public final static int ONE_DELAY = 3;
 	public final static int TWO_DELAY = 1;
 	
 	//Properties

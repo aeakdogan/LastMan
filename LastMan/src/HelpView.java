@@ -34,7 +34,9 @@ public class HelpView extends JPanel implements ActionListener
 		LMTextArea helpText = new LMTextArea(
 				"HELP\nUse arrow keys to move your character.\n"+ "Use the SPACE key to use your default weapon.\n" + "Use the S key to use your special weapon.\n\n" +
 				           "Character\tHealth\tSpeed\nKil\t600\t10\nAyibogan\t1000\t2\nNemo\t800\t5\n\n"+ "Your default weapon damages both your enemies and you.\n" +
-				           "Your special weapon damages only your enemies, and it has extra damage.", defCol); 
+				           "Your special weapon damages only your enemies, and it has extra damage.\n\n"
+				           + "Don't forget to pick up packs before they disappear!\n\n"
+				           + "Good luck!", defCol); 
 		helpText.setFont(new Font("Book Antiqua", Font.BOLD|Font.BOLD, 20));
 		pan1.add(helpText);
 	
