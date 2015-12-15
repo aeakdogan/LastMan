@@ -1,3 +1,11 @@
+/**
+ * 
+ * @author Burcu Canakci
+ * Definition: This class is the location object of the LastMan.
+ * It holds properties which hold values for other usage in GameMap, Character
+ * Pack etc. It is used for movement of characters, place of the walls and packs etc. 
+ *
+ */
 public class Location 
 {
 	//Constants
@@ -18,6 +26,11 @@ public class Location
 	private int y;
 	
 	//Constructor
+	/**
+	 * Initializes the location
+	 * @param x horizontal coordinate of the location
+	 * @param y vertical coordinate of the location
+	 */
 	public Location(int x, int y) 
 	{
 		this.x = x;
@@ -44,6 +57,11 @@ public class Location
 		this.y = y;
 	}
 	
+	/**
+	 * checks if given location is equal to current location
+	 * @param l the given location
+	 * @return are locations the same or not?
+	 */
 	public boolean equals(Location l)
 	{
 		if(l.getX() == x && l.getY() == y)
