@@ -18,7 +18,7 @@ public class GameController
 		packTime = 0;
 	}
 
-	
+	//Methods
 	/**
 	 * @param no
 	 * @param level
@@ -56,9 +56,7 @@ public class GameController
 	 */
 	private boolean isValidTimer(int t)
 	{
-		if(t >= 30 && t <= 300)
-			return true;
-		return false;
+		return (t >= 30 && t <= 300);			
 	}
 
 	/**

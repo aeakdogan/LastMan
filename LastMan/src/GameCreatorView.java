@@ -195,15 +195,8 @@ public class GameCreatorView extends JPanel implements ActionListener, LastManVi
 		}	
 	}
 
-<<<<<<< HEAD
 	/* 
 	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
-=======
-	
-	/* 
-	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
-	 * 
->>>>>>> 0da15148cb08445ebbfb93cc5cdde1a8137ec32c
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) 
