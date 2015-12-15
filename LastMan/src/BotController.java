@@ -1,3 +1,10 @@
+/**
+ * @author Burcu Canakci
+ * Definition: Abstract Class for controlling bots. It will be used by 
+ * subclassing for varying bot levels. This class has been inherited from
+ * CharacterController class.
+ * 
+ */
 public abstract class BotController extends CharacterController
 {
 	//Constants

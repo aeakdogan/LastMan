@@ -1,13 +1,27 @@
+/**
+ * @author Burcu Canakci
+ * Definition: This class is for controlling hard level bots.
+ * This class is inherited from BotController class.
+ */
 public class HardBotController extends BotController
 {
 
 	//Constructor
+	/**
+	 * This constructor initializes an hard bot controller.
+	 * @param c determines which character this bot will be
+	 */
 	public HardBotController(Character c) 
 	{
 		character = c;
 	}
 
 	//Methods
+	/* (non-Javadoc)
+	 * This method is overridden from BotController class.
+	 * Determines what this hard bot will do.
+	 * @see BotController#makeRandomMove()
+	 */
 	@Override
 	public boolean makeRandomMove() 
 	{

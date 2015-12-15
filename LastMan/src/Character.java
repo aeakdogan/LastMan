@@ -1,5 +1,10 @@
 import java.util.ArrayList;
-
+/**
+ * @author Burcu Canakci
+ * Definition: This class is for the character object for LastMan.
+ * It is both for bots and player controlled characters.
+ *
+ */
 public class Character
 {
 	//Constants
@@ -19,6 +24,12 @@ public class Character
 	private Game game;
 	
 	//Constructor
+	/**
+	 * Initializes the character for the game.
+	 * @param heroId determines which hero this character will be.
+	 * @param l determines which level this character will be.
+	 * @param g determines the game in which this character will be.
+	 */
 	public Character(String heroId, int l, Game g) 
 	{
 		hero = new Hero(heroId);
@@ -34,6 +45,10 @@ public class Character
 	
 
 	//Methods
+	/**
+	 * sets the weapon one for this character if it is not used.
+	 * @return returns true if it sets the weapon one or otherwise
+	 */
 	public boolean setWeaponOne()
 	{
 		if(noWeaponOneUsageFor == 0)
@@ -45,6 +60,10 @@ public class Character
 		return false;	
 	}
 	
+	/**
+	 * sets the weapon two for this character if it is not used.
+	 * @return returns true if it sets the weapon two or otherwise
+	 */
 	public boolean setWeaponTwo()
 	{
 		if(noWeaponTwoUsageFor == 0)
@@ -56,6 +75,11 @@ public class Character
 		return false;	
 	}
 	
+	/**
+	 * Implements the pack which is taken by the character.
+	 * @param p determines what kind of pack is taken
+	 * @return is the pack taken or not
+	 */
 	private boolean implementPack(Pack p)
 	{
 		if(p.getId().equals("healthBoost"))
@@ -76,6 +100,13 @@ public class Character
 		return location;
 	}
 
+	/**
+	 * This method is for collecting packs. First it checks if there is a pack in the
+	 * current location Then it checks the level of the character. If character is easy 
+	 * level it doesn't pick up the packs, if character is medium level it takes the pack 
+	 * but doesn't use, if character is hard level it picks up the pack and implements it.
+	 * @param location determines the current location
+	 */
 	public void setLocation(Location location) 
 	{
 		this.location = location;
