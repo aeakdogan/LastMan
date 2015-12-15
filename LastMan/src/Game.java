@@ -3,6 +3,11 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * @author Burcu Canakci
+ * This represents the game object associated with each individual game. 
+ * It implements LastManModel and has a GameView associated with it.
+ */
 public class Game implements LastManModel
 {
 
@@ -15,7 +20,7 @@ public class Game implements LastManModel
 	private GameView view;
 	private int maxTime;
 	private int currentTime;
-	private boolean state;
+	private boolean state;//game has started/not started.
 	
 	//Constructor
 	public Game() 
@@ -28,6 +33,12 @@ public class Game implements LastManModel
 	}
 	
 	//Methods
+	/**
+	 * Given the parameter, creates bots with appropriate levels.
+	 * It uses the hero list provided in docs to create random heroes.
+	 * @param no
+	 * @param level
+	 */
 	public void createBots(int no, int level)
 	{
 		for( int i = 0; i < no; i++)
@@ -56,6 +67,12 @@ public class Game implements LastManModel
 		}
 	}
 	
+	/**
+	 * This first checks if the game properties are valid. If not returns invalid value.
+	 * It then locates players to the corners of the map.
+	 * Then it initializes related game properties and returns true for success.
+	 * @return is the readiness of the game.
+	 */
 	public boolean isReady()
 	{
 		if(aliveCharacters == null)
@@ -98,9 +115,14 @@ public class Game implements LastManModel
 		return true;	
 	}
 	
+	/**
+	 * This first increments the currentTime. It then updates the times of the gameMap.
+	 * Then it updates the list of alive and dead chaarcters by looking at their hP.
+	 * @param elapsed is the time that passed.
+	 */
 	public void update(int elapsed)
 	{
-		currentTime++;
+		currentTime += elapsed;
 		gameMap.updateTimes(elapsed);
 		for(int i = 0; i < aliveCharacters.size(); i++)
 		{
@@ -114,12 +136,18 @@ public class Game implements LastManModel
 		view.updateView();		
 	}
 	
+	/**
+	 * This method first changes the state of the game to off. It then calls the GameView's endGame methods.
+	 * @param resultScreenInfo is the info required for the results screen.
+	 */
 	public void endGame(String resultScreenInfo) 
 	{
 		state = !state;
 		view.endGame(resultScreenInfo);
 	}
-
+	
+	
+	//Getter and Setter Methods
 	public ArrayList<Character> getBots() 
 	{
 		return bots;
