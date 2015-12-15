@@ -25,6 +25,15 @@ import LMGraphics.LMButton;
 import LMGraphics.LMPanel;
 import LMGraphics.LMTextArea;
 
+/**
+ * @author Enes Akdogan
+ * 
+ * GameView class initialize and determine the view of the game
+ * draw images of walls, characters, weapons and packs to the proper location
+ * 
+ * GameView class have info Panel in order to show current HP's of characters and cooldown time of their weapons
+ *
+ */
 public class GameView extends JPanel implements ActionListener, LastManView
 {
 	//Constants
@@ -43,6 +52,13 @@ public class GameView extends JPanel implements ActionListener, LastManView
 	private Sound background;
 	
 	//Constructor
+	/**
+	 * @param gC
+	 * @param f
+	 * 
+	 * take GameController and GameFrame parameters
+	 * initialize view into the that frame
+	 */
 	public GameView(GameController gC, GameFrame f) 
 	{
 		frame = f;
@@ -119,6 +135,12 @@ public class GameView extends JPanel implements ActionListener, LastManView
 		super.paintComponent(g);		
 	}
 	
+	/* 
+	 * @see LastManView#updateView()
+	 * 
+	 * updateView() method updates the view
+	 * 
+	 */
 	public void updateView()
 	{	
 		String infoText = "Time Left: " + (game.getMaxTime() - game.getCurrentTime()) + "\nYour Hero: " + game.getPlayer().getHero().getId()
@@ -132,6 +154,9 @@ public class GameView extends JPanel implements ActionListener, LastManView
 		repaint();
 	}
 
+	/* 
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) 
 	{
@@ -139,6 +164,11 @@ public class GameView extends JPanel implements ActionListener, LastManView
 			gameC.endGame();
 	}
 	
+	/**
+	 * @param resultScreenInfo
+	 * 
+	 * endGame method ends the game and switches to the result screen
+	 */
 	public void endGame(String resultScreenInfo) 
 	{	
 		timer.cancel();
@@ -161,10 +191,20 @@ public class GameView extends JPanel implements ActionListener, LastManView
 		return botCs;
 	}
 	
+	/**
+	 * @author Enes
+	 *
+	 * GamePanel class is a nested class of GameView
+	 * its responsible for view of the game map and draws wall,characters, weapon and packs
+	 *	
+	 */
 	public class GamePanel extends JPanel implements KeyListener
 	{	
 		private static final long serialVersionUID = 3834437563918953922L;
 
+		/* 
+		 * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
+		 */
 		public void paintComponent(Graphics g)
 		{
 			super.paintComponent(g);
