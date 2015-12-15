@@ -1,3 +1,8 @@
+/**
+ * @author Yasemin Doganci
+ * This class, Settings, is a Model class for Settings object. It is used for the accessor and mutator 
+ * methods.  
+ */
 public class Settings implements LastManModel
 {
 	//Properties
@@ -5,7 +10,10 @@ public class Settings implements LastManModel
 	private int volume;
 	private SettingsView view;
 
-	//Constructor
+	
+	/**
+	 * Constructor for Settings: it initializes the musicOn, volume and view properties. 
+	 */
 	public Settings()
 	{
 		musicOn = true;
@@ -13,12 +21,19 @@ public class Settings implements LastManModel
 		view = null;
 	}
 
-	//Methods
+	
+	/**
+	 * @returns true if music is On, returns false otherwise. 
+	 */
 	public boolean isMusicOn() 
 	{
 		return musicOn;
 	}
 
+	/**
+	 * @param musicOn 
+	 * setMusicOn method updates the View of the Settings objects and sets the music on. 
+	 */
 	public void setMusicOn(boolean musicOn)
 	{
 		this.musicOn = musicOn;

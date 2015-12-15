@@ -5,6 +5,12 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton; 
 import javax.swing.JPanel; 
 
+/**
+ * @author Burcu Canakci 
+ * MainView class is used for showing the Main Menu of the Last Man game. It has different JButtons for 
+ * switching the menus. 
+ *
+ */
 public class MainView extends JPanel implements ActionListener 
 {
 	//Constants	
@@ -14,6 +20,11 @@ public class MainView extends JPanel implements ActionListener
 	private JButton newGameButton, settingsButton, helpButton, creditsButton;
 	private GameFrame frame;
 	
+	/**
+	 * @param frame
+	 * Constructor is used for initializing this frame. It has newGameButton, helpButton,settingsButton,
+	 * and creditsButton in it, in order to switch the menus. 
+	 */
 	public MainView(GameFrame frame)
 	{
 		this.frame = frame;
@@ -61,11 +72,12 @@ public class MainView extends JPanel implements ActionListener
 		creditsButton.setLocation(580, 500);
 		creditsButton.setBorderPainted(false);
 		creditsButton.addActionListener(this);
-		add(creditsButton);
-		
+		add(creditsButton);	
 	}
-	
-	//Methods
+
+	/* 
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	public void actionPerformed(ActionEvent e)
 	{
 		if(e.getSource() == newGameButton)
@@ -94,6 +106,10 @@ public class MainView extends JPanel implements ActionListener
 		}
 	}
 	
+	
+	/* 
+	 * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
+	 */
 	public void paintComponent(Graphics g)
 	{	
 		String path = "images//mainMenu.png"; 

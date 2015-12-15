@@ -1,3 +1,11 @@
+/**
+ * @author Burcu Canakci
+ * 
+ * Pack class specifies the attributes of the bonus packages
+ * 
+ * These specifications are type, time and delay time of the packs
+ * 
+ */
 public class Pack 
 {
 	//Constants

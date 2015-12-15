@@ -16,6 +16,13 @@ import LMGraphics.LMPanel;
 import LMGraphics.LMTextArea;
 import LMGraphics.LMTextField;
 
+/**
+ * @author Burcu Canakci
+ *
+ * GameCreatorView class initialize the views between main menu and gameview
+ * in the GameCreatorView user determines number of bots, difficulty of them, select the hero and map, and set the time of game. 
+ *
+ */
 public class GameCreatorView extends JPanel implements ActionListener, LastManView
 {
 	//Constants
@@ -35,6 +42,11 @@ public class GameCreatorView extends JPanel implements ActionListener, LastManVi
 	private String[] heroes, maps;
 	
 	//Constructor
+	/**
+	 * @param frame
+	 * Constructor of the GameCreatorView class takes frame parameter and initialize the views into to the frame
+	 * this constructor initialize Bot Selection Panel, Hero Selection Panel, Map Selection Panel, Time Selection Panel and Game Ready Panel
+	 */
 	public GameCreatorView(GameFrame frame)
 	{
 		this.frame = frame;
@@ -149,6 +161,11 @@ public class GameCreatorView extends JPanel implements ActionListener, LastManVi
 		cl.show(this, "bot");
 	}
 
+	/**
+	 * initializeList method is used for reading the Hero specifications from the file, reading map 
+	 * information from the file, and throws an IO exception if the input file is not found.  
+	 * 
+	 */
 	private void initializeLists() 
 	{
 		try 
@@ -178,6 +195,16 @@ public class GameCreatorView extends JPanel implements ActionListener, LastManVi
 		}	
 	}
 
+<<<<<<< HEAD
+	/* 
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+=======
+	
+	/* 
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 * 
+>>>>>>> 0da15148cb08445ebbfb93cc5cdde1a8137ec32c
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) 
 	{
@@ -241,6 +268,9 @@ public class GameCreatorView extends JPanel implements ActionListener, LastManVi
 		}
 	}
 
+	/* 
+	 * @see LastManView#updateView()
+	 */
 	@Override
 	public void updateView() 
 	{

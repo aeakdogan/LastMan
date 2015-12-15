@@ -9,6 +9,10 @@ import LMGraphics.LMTextArea;
 
 import javax.swing.BoxLayout; 
 
+/**
+ * @author Yasemin Doganci
+ * This class is used for the view of Credits page. It has a JPanel to show its contents. 
+ */
 public class CreditsView extends JPanel implements ActionListener
 {
 
@@ -20,6 +24,12 @@ public class CreditsView extends JPanel implements ActionListener
 	private GameFrame frame;
 	
 	//Constructor
+	/**
+	 * @param frame
+	 * This constructor, CreditsView, initializes the frame according to this frame. 
+	 * Panel has a TextArea called LMText Area in it, in order to write the necessary String. 
+	 *
+	 */
 	public CreditsView(GameFrame frame) 
 	{
 		this.frame = frame;		
@@ -38,6 +48,12 @@ public class CreditsView extends JPanel implements ActionListener
 		add(pan2);		
 	}
 	
+	
+	/* 
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 * This is the actionPerformed method which is used for clicking the menu button. 
+	 */
+	@Override
 	public void actionPerformed(ActionEvent e)
 	{
 		if(e.getSource() == menuButton)
@@ -46,6 +62,10 @@ public class CreditsView extends JPanel implements ActionListener
 		}
 	}
 	
+	
+	/* 
+	 * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
+	 */
 	public void paintComponent(Graphics  g)
 	{
 		super.paintComponent((java.awt.Graphics) g);		

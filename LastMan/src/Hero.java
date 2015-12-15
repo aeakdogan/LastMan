@@ -2,6 +2,14 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.Scanner;
 
+/**
+ * @author Burcu Canakci
+ * 
+ * Hero class identifies the properties of heroes
+ * 
+ * Hero's hp, speed and hero's weapon type
+ * 
+ */
 public class Hero
 {
 	//Properties
@@ -12,6 +20,14 @@ public class Hero
 	private Weapon weaponTwo;
 	
 	//Constructor
+	/**
+	 * Constructor of the Hero class initialize hero
+	 * @param id unique ID of heroes
+	 * 
+	 * constructor reads all heroes from the file
+	 * and take properties of the hero with this id 
+	 * 
+	 */
 	public Hero(String id)
 	{
 		try 
