@@ -1,22 +1,19 @@
-
 public class Weapon 
 {
-	
-	//constants
+	//Constants
 	public final static int ONE_RANGE = 2*Location.CELL;
-	public final static int ONE_DELAY = 7;
-	public final static int TWO_DELAY = 2;
+	public final static int ONE_DELAY = 5;
+	public final static int TWO_DELAY = 1;
 	
-	//properties
+	//Properties
 	private int range;
 	private int damage;
 	private int delayTime;
 	private int time;
 	private boolean firstType;
-	private Character character;
+	private Character character;	
 	
-	
-	//constructor	
+	//Constructor	
 	public Weapon(int range, int damage, int delayTime, boolean firstType) 
 	{
 		this.range = range;
@@ -26,51 +23,65 @@ public class Weapon
 		character = null;
 	}
 	
-	
-	//methods
-	public int getRange() {
+	//Methods	
+	public int getRange() 
+	{
 		return range;
 	}
 
-	public void setRange(int range) {
+	public void setRange(int range)
+	{
 		this.range = range;
 	}
-	public int getDamage() {
+	
+	public int getDamage() 
+	{
 		return damage;
 	}
-	public void setDamage(int damage) {
+	
+	public void setDamage(int damage) 
+	{
 		this.damage = damage;
 	}
-	public int getDelayTime() {
+	
+	public int getDelayTime() 
+	{
 		return delayTime;
 	}
-	public void setDelayTime(int delayTime) {
+	
+	public void setDelayTime(int delayTime) 
+	{
 		this.delayTime = delayTime;
 	}
-	public int getTime() {
+	
+	public int getTime() 
+	{
 		return time;
 	}
-	public void setTime(int time) {
+	
+	public void setTime(int time) 
+	{
 		if(time < 0) time = 0;
 		this.time = time;
 	}
-	public boolean isFirstType() {
+	
+	public boolean isFirstType() 
+	{
 		return firstType;
 	}
-	public void setFirstType(boolean firstType) {
+	
+	public void setFirstType(boolean firstType) 
+	{
 		this.firstType = firstType;
 	}
 
-
-	public Character getCharacter() {
+	public Character getCharacter() 
+	{
 		return character;
 	}
 
-
-	public void setCharacter(Character character) {
+	public void setCharacter(Character character)
+	{
 		this.character = character;
 	}
-	
-	
-
 }

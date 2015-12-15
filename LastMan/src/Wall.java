@@ -1,22 +1,21 @@
-
 public class Wall 
 {
-	//constants
+	//Constants
 	public static final int HARD = 2;
 	public static final int SOFT = 1;
 	
-	//properties
+	//Properties
 	private Location location;
 	private int resistance;
 	
-	//constructor
+	//Constructor
 	public Wall(Location location, int resistance) 
 	{
 		this.location = location;
 		this.resistance = resistance;
 	}
 	
-	//methods
+	//Methods
 	public Location getLocation() 
 	{
 		return location;
@@ -36,6 +35,4 @@ public class Wall
 	{
 		this.resistance = resistance;
 	}
-	
-
 }

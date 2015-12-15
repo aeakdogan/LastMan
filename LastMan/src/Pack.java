@@ -1,16 +1,16 @@
-
-public class Pack {
-
-	//constants
+public class Pack 
+{
+	//Constants
 	public static final int HEALTH_BOOST = 50;
 	public static final int WEAPON_BOOST = 25;
 	public static final int RATE = 20;
 	
-	//properties
+	//Properties
 	private String id;
 	private int time;
 	private int delayTime;
 	
+	//Constructor
 	public Pack(String id)
 	{
 		this.id = id;
@@ -21,30 +21,35 @@ public class Pack {
 			delayTime = 5;		
 	}
 
-	public int getTime() {
+	//Methods
+	public int getTime() 
+	{
 		return time;
 	}
 
-	public void setTime(int time) {
+	public void setTime(int time) 
+	{
 		if(time < 0) time = 0;
 		this.time = time;
 	}
 
-	public int getDelayTime() {
+	public int getDelayTime() 
+	{
 		return delayTime;
 	}
 
-	public void setDelayTime(int delayTime) {
+	public void setDelayTime(int delayTime) 
+	{
 		this.delayTime = delayTime;
 	}
 
-	public String getId() {
+	public String getId() 
+	{
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(String id) 
+	{
 		this.id = id;
 	}
-	
-
 }

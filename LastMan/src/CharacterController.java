@@ -1,10 +1,9 @@
-
 public abstract class CharacterController 
 {	
-	//properties
+	//Properties
 	protected Character character;
 	
-	//methods
+	//Methods
 	public void directionKeyPressed(int direction)
 	{
 		Location newLoc = calculateNewLocation(direction);
@@ -25,28 +24,20 @@ public abstract class CharacterController
 	private Location calculateNewLocation(int dir)
 	{
 		Location newL = new Location(character.getLocation().getX(),character.getLocation().getY());
-		int move = character.getHero().getSpeed()*Location.BLOCK/5;
-		//int move = character.getHero().getSpeed();
+		int move = character.getHero().getSpeed()*Location.BLOCK/Character.MOVE_CONSTANT;
 		
-		//up
 		if(dir == Location.DIRECTION_UP)
 		{
 			newL.setY(newL.getY() - move );	
 		}
-		
-		//right
 		if(dir == Location.DIRECTION_RIGHT)
 		{
 			newL.setX(newL.getX() + move);	
 		}
-		
-		//left
 		if(dir == Location.DIRECTION_LEFT)
 		{
 			newL.setX(newL.getX() - move);	
 		}
-		
-		//down
 		if(dir == Location.DIRECTION_DOWN)
 		{
 			newL.setY(newL.getY() + move);	
@@ -55,11 +46,13 @@ public abstract class CharacterController
 		return newL;		
 	}
 	
-	public Character getCharacter() {
+	public Character getCharacter() 
+	{
 		return character;
 	}
 
-	public void setCharacter(Character character) {
+	public void setCharacter(Character character) 
+	{
 		this.character = character;
 	}
 }

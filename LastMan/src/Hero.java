@@ -2,16 +2,16 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.Scanner;
 
-public class Hero{
-	
-	//properties
+public class Hero
+{
+	//Properties
 	private int initialHealthPoints;
 	private int speed;
 	private String id;
 	private Weapon weaponOne;
 	private Weapon weaponTwo;
 	
-	//constructor
+	//Constructor
 	public Hero(String id)
 	{
 		try 
@@ -40,50 +40,60 @@ public class Hero{
 				System.out.println("Error");
 			}
 			
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
+		} catch (FileNotFoundException e) 
+		{
 			e.printStackTrace();
 		}
 	}
 
-	//methods
-	public int getInitialHealthPoints() {
+	//Methods
+	public int getInitialHealthPoints() 
+	{
 		return initialHealthPoints;
 	}
 
-	public void setInitialHealthPoints(int initialHealthPoints) {
+	public void setInitialHealthPoints(int initialHealthPoints) 
+	{
 		this.initialHealthPoints = initialHealthPoints;
 	}
 
-	public int getSpeed() {
+	public int getSpeed()
+	{
 		return speed;
 	}
 
-	public void setSpeed(int speed) {
+	public void setSpeed(int speed) 
+	{
 		this.speed = speed;
 	}
 
-	public String getId() {
+	public String getId() 
+	{
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(String id) 
+	{
 		this.id = id;
 	}
 
-	public Weapon getWeaponOne() {
+	public Weapon getWeaponOne() 
+	{
 		return weaponOne;
 	}
 
-	public void setWeaponOne(Weapon weaponOne) {
+	public void setWeaponOne(Weapon weaponOne)
+	{
 		this.weaponOne = weaponOne;
 	}
 
-	public Weapon getWeaponTwo() {
+	public Weapon getWeaponTwo()
+	{
 		return weaponTwo;
 	}
 
-	public void setWeaponTwo(Weapon weaponTwo) {
+	public void setWeaponTwo(Weapon weaponTwo) 
+	{
 		this.weaponTwo = weaponTwo;
 	}
 }

@@ -1,50 +1,38 @@
 import java.awt.event.ActionListener;
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import javax.swing.JPanel;
-import javax.swing.JButton;
-import javax.swing.JTextArea;
+import LMGraphics.LMButton;
+import LMGraphics.LMPanel;
+import LMGraphics.LMTextArea;
+
 import javax.swing.BoxLayout; 
 
 public class CreditsView extends JPanel implements ActionListener
 {
 
+	//Constants
 	private static final long serialVersionUID = -4983868374121854280L;
-	private JTextArea creditsText; 
-	private JButton menuButton; 
+	
+	//Properties
+	private LMButton menuButton; 
 	private GameFrame frame;
 	
+	//Constructor
 	public CreditsView(GameFrame frame) 
 	{
 		this.frame = frame;		
-		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS)); 
-		setPreferredSize(new Dimension(1100,600)); 
+		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		setBackground(Color.BLACK);	
 		
-		JPanel pan1 = new JPanel(new FlowLayout(FlowLayout.CENTER));
-		pan1.setBackground(Color.BLACK);
-		creditsText = new JTextArea("CREDITS\nEnes Akdogan\nBurcu Canakci\nYasemin Doganci\nOzgur Tasoluk");
-		creditsText.setFont(new Font("Book Antiqua", Font.BOLD|Font.BOLD, 20));
-		creditsText.setSize(400,400);
-		creditsText.setForeground(Color.YELLOW);
-		creditsText.setBackground(Color.BLACK);
+		LMPanel pan1 = new LMPanel();	
+		LMTextArea creditsText = new LMTextArea("CREDITS\nEnes Akdogan\nBurcu Canakci\nYasemin Doganci\nOzgur Tasoluk", Color.YELLOW);
 		pan1.add(creditsText);
 		add(pan1);
 		
-		JPanel pan2 = new JPanel(new FlowLayout(FlowLayout.CENTER));
-		pan2.setBackground(Color.BLACK);
-		menuButton = new JButton("Main Menu");
-		menuButton.setSize(180,60);
-		menuButton.setHorizontalTextPosition(JButton.CENTER);
-		menuButton.setVerticalTextPosition(JButton.CENTER);
-		menuButton.setForeground(Color.YELLOW); 
-		menuButton.setBackground(Color.BLACK);
-		menuButton.setFont(new Font("Book Antiqua", Font.BOLD|Font.BOLD, 20));
-		menuButton.setBorderPainted(false);
+		LMPanel pan2 = new LMPanel();		
+		menuButton = new LMButton("Main Menu", Color.YELLOW);
 		menuButton.addActionListener(this);
 		pan2.add(menuButton);
 		add(pan2);		
@@ -58,9 +46,8 @@ public class CreditsView extends JPanel implements ActionListener
 		}
 	}
 	
-	public void paintComponent(Graphics  g){
-		super.paintComponent((java.awt.Graphics) g);
-		
+	public void paintComponent(Graphics  g)
+	{
+		super.paintComponent((java.awt.Graphics) g);		
 	}
-	
 }

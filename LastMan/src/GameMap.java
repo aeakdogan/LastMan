@@ -3,22 +3,13 @@ import java.util.HashMap;
 
 public class GameMap 
 {	
-	//properties
+	//Properties
 	private LMap map;
 	private HashMap<Location, Weapon> currentWeapons;
 	private HashMap<Location, Pack> currentPacks;
-
 	private Game game;
 	
-	public LMap getMap() {
-		return map;
-	}
-
-	public void setMap(LMap map) {
-		this.map = map;
-	}
-
-	//constructor
+	//Constructor
 	public GameMap(String mapId, Game game)
 	{
 		this.game = game;
@@ -27,7 +18,7 @@ public class GameMap
 		currentPacks = new HashMap<Location, Pack>();
 	}
 	
-	//methods
+	//Methods
 	public ArrayList<Character> getCharactersIn(Location l, int range)
 	{
 		ArrayList<Character> chars = new ArrayList<Character>();
@@ -81,26 +72,6 @@ public class GameMap
 		p.setTime(p.getDelayTime());
 		currentPacks.put(l, p);
 		return true;
-	}
-	
-	public Pack getPackAt(Location l)
-	{
-		return currentPacks.get(l);
-	}
-	
-	public void removePackAt(Location l)
-	{
-		currentPacks.remove(l);
-	}
-
-	public Weapon getWeaponAt(Location l)
-	{
-		return currentWeapons.get(l);
-	}
-	
-	public void removeWeaponAt(Location l)
-	{
-		currentWeapons.remove(l);
 	}
 	
 	public void updateTimes(int elapsed)
@@ -172,8 +143,15 @@ public class GameMap
 			if(wall.getResistance() == Wall.SOFT)
 				map.removeWall(wall);
 		}		
-		removeWeaponAt(l);		
-		game.getView().playSound("sounds\\explosion.wav");
+			
+		if(w.isFirstType())
+			game.getView().playSound("sounds\\explosion.wav");
+		else
+		{
+			String filename = "sounds\\" + w.getCharacter().getHero().getId() + "explo.wav";
+			game.getView().playSound(filename);
+		}
+		removeWeaponAt(l);	
 	}
 	
 	public Location validateLocation(Location newLoc, int direction) 
@@ -183,9 +161,9 @@ public class GameMap
 			int highYOfWall = w.getLocation().getY();
 			int lowYOfWall = w.getLocation().getY() + Location.CELL;
 			int highYOfChar = newLoc.getY();
-			int lowYOfChar = newLoc.getY() + Location.CELL;
+			int lowYOfChar = newLoc.getY() + Location.CHAR_CELL;
 			int leftXOfWall = w.getLocation().getX();
-			int rightXOfWall = w.getLocation().getX() + Location.CELL;
+			int rightXOfWall = w.getLocation().getX() + Location.CHAR_CELL;
 			int leftXOfChar = newLoc.getX();
 			int rightXOfChar = newLoc.getX() + Location.CELL;
 			
@@ -217,20 +195,53 @@ public class GameMap
 		return newLoc;
 	}
 	
+	public Pack getPackAt(Location l)
+	{
+		return currentPacks.get(l);
+	}
+	
+	public void removePackAt(Location l)
+	{
+		currentPacks.remove(l);
+	}
+
+	public Weapon getWeaponAt(Location l)
+	{
+		return currentWeapons.get(l);
+	}
+	
+	public void removeWeaponAt(Location l)
+	{
+		currentWeapons.remove(l);
+	}
+	
 	public HashMap<Location, Weapon> getCurrentWeapons() 
 	{
 		return currentWeapons;
 	}
 
-	public void setCurrentWeapons(HashMap<Location, Weapon> currentWeapons) {
+	public void setCurrentWeapons(HashMap<Location, Weapon> currentWeapons) 
+	{
 		this.currentWeapons = currentWeapons;
 	}
 
-	public HashMap<Location, Pack> getCurrentPacks() {
+	public HashMap<Location, Pack> getCurrentPacks() 
+	{
 		return currentPacks;
 	}
 
-	public void setCurrentPacks(HashMap<Location, Pack> currentPacks) {
+	public void setCurrentPacks(HashMap<Location, Pack> currentPacks) 
+	{
 		this.currentPacks = currentPacks;
+	}
+	
+	public LMap getMap() 
+	{
+		return map;
+	}
+
+	public void setMap(LMap map) 
+	{
+		this.map = map;
 	}
 }

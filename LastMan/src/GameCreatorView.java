@@ -1,8 +1,5 @@
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
@@ -10,30 +7,34 @@ import java.io.FileReader;
 import java.util.Scanner;
 
 import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
 
-public class GameCreatorView extends JPanel implements ActionListener
+import LMGraphics.LMButton;
+import LMGraphics.LMComboBox;
+import LMGraphics.LMLabel;
+import LMGraphics.LMPanel;
+import LMGraphics.LMTextArea;
+import LMGraphics.LMTextField;
+
+public class GameCreatorView extends JPanel implements ActionListener, LastManView
 {
-
+	//Constants
 	private static final long serialVersionUID = -8845130704051284821L;
 	private final String[] levs = {"EASY","MEDIUM","HARD"};
 	
+	//Properties
 	private GameController gController;
 	private CardLayout cl;
 	private JPanel botSelectionPanel, heroSelectionPanel, mapSelectionPanel, timerSelectionPanel, gameReadyPanel; 
-	private JButton botSaveButton, heroSaveButton, mapSaveButton, timerSaveButton, startGameButton, mainMenuButton;
-	private JComboBox<String> botList, levList, heroList, mapList;
-	private JTextField timer;
-	private JTextArea game;
-	private JLabel timerMessage;
+	private LMButton botSaveButton, heroSaveButton, mapSaveButton, timerSaveButton, startGameButton, mainMenuButton;
+	private LMComboBox botList, levList, heroList, mapList;
+	private LMTextField timer;
+	private LMTextArea game;
+	private LMLabel timerMessage;
 	private GameFrame frame;
 	private String[] heroes, maps;
 	
+	//Constructor
 	public GameCreatorView(GameFrame frame)
 	{
 		this.frame = frame;
@@ -42,142 +43,85 @@ public class GameCreatorView extends JPanel implements ActionListener
 		cl = new CardLayout();
 		setLayout(cl);
 		initializeLists();
-		//bot selection panel
+		
+		Color defCol = Color.YELLOW;
+				
+		//Bot Selection Panel
 		botSelectionPanel = new JPanel();
 		botSelectionPanel.setLayout(new BoxLayout(botSelectionPanel, BoxLayout.PAGE_AXIS));
 		botSelectionPanel.setBackground(Color.BLACK);
-		JPanel firstB = new JPanel(new FlowLayout(FlowLayout.CENTER));
-		firstB.setBackground(Color.BLACK);
-		JLabel noOfBots = new JLabel("Select number of bots: ");
-		noOfBots.setForeground(Color.YELLOW);
-		noOfBots.setFont(new Font("Book Antiqua", Font.BOLD|Font.BOLD, 20));
+		LMPanel firstB = new LMPanel();
+		LMLabel noOfBots = new LMLabel("Select number of bots: ", defCol);
 		String[] nos = {"1","2","3"};
-		botList = new JComboBox<String>(nos);
-		botList.setSelectedIndex(0);
-		botList.setBackground(Color.BLACK);
-		botList.setForeground(Color.YELLOW);
-		botList.setFont(new Font("Book Antiqua", Font.BOLD|Font.BOLD, 20));
+		botList = new LMComboBox(nos, defCol);
 		firstB.add(noOfBots);
 		firstB.add(botList);
 		botSelectionPanel.add(firstB);
-		JPanel secondB = new JPanel(new FlowLayout(FlowLayout.CENTER));
-		secondB.setBackground(Color.BLACK);
-		JLabel level = new JLabel("Select bot level: ");
-		level.setForeground(Color.YELLOW);
-		level.setFont(new Font("Book Antiqua", Font.BOLD|Font.BOLD, 20));
-		levList = new JComboBox<String>(levs);
-		levList.setSelectedIndex(0);
-		levList.setBackground(Color.BLACK);
-		levList.setForeground(Color.YELLOW);
-		levList.setFont(new Font("Book Antiqua", Font.BOLD|Font.BOLD, 20));
+		LMPanel secondB = new LMPanel();
+		LMLabel level = new LMLabel("Select bot level: ", defCol);
+		levList = new LMComboBox(levs, defCol);
 		secondB.add(level);
 		secondB.add(levList);
-		JPanel thirdB = new JPanel(new FlowLayout(FlowLayout.CENTER));
-		thirdB.setBackground(Color.BLACK);
 		botSelectionPanel.add(secondB);
-		botSaveButton = new JButton("Next");
-		botSaveButton.setBackground(Color.BLACK);
-		botSaveButton.setForeground(Color.YELLOW);
-		botSaveButton.setFont(new Font("Book Antiqua", Font.BOLD|Font.BOLD, 20));
-		botSaveButton.setSize( new Dimension( 500, 50 ) );
-		botSaveButton.setBorderPainted(false);
+		LMPanel thirdB = new LMPanel();		
+		botSaveButton = new LMButton("Next", defCol);
 		botSaveButton.addActionListener(this);
 		thirdB.add(botSaveButton);
 		botSelectionPanel.add(thirdB);
 		add(botSelectionPanel, "bot");
 		
-		//hero selection panel
+		//Hero Selection Panel
 		heroSelectionPanel = new JPanel();
 		heroSelectionPanel.setLayout(new BoxLayout(heroSelectionPanel, BoxLayout.PAGE_AXIS));
 		heroSelectionPanel.setBackground(Color.BLACK);
-		JPanel firstH = new JPanel(new FlowLayout(FlowLayout.CENTER));
-		firstH.setBackground(Color.BLACK);
-		JLabel selHero = new JLabel("Select hero: ");
-		selHero.setForeground(Color.YELLOW);
-		selHero.setFont(new Font("Book Antiqua", Font.BOLD|Font.BOLD, 20));
-		heroList = new JComboBox<String>(heroes);
-		heroList.setSelectedIndex(0);
-		heroList.setBackground(Color.BLACK);
-		heroList.setForeground(Color.YELLOW);
-		heroList.setFont(new Font("Book Antiqua", Font.BOLD|Font.BOLD, 20));
+		LMPanel firstH = new LMPanel();
+		LMLabel selHero = new LMLabel("Select hero: ", defCol);
+		heroList = new LMComboBox(heroes, defCol);
 		firstH.add(selHero);
 		firstH.add(heroList);
 		heroSelectionPanel.add(firstH);
-		JPanel secondH = new JPanel(new FlowLayout(FlowLayout.CENTER));
-		secondH.setBackground(Color.BLACK);
-		heroSaveButton = new JButton("Next");
-		heroSaveButton.setBackground(Color.BLACK);
-		heroSaveButton.setForeground(Color.YELLOW);
-		heroSaveButton.setFont(new Font("Book Antiqua", Font.BOLD|Font.BOLD, 20));
-		heroSaveButton.setSize( new Dimension( 500, 50 ) );
-		heroSaveButton.setBorderPainted(false);
+		LMPanel secondH = new LMPanel();
+		heroSaveButton = new LMButton("Next", defCol);
 		heroSaveButton.addActionListener(this);
 		secondH.add(heroSaveButton);
 		heroSelectionPanel.add(secondH);
 		add(heroSelectionPanel, "hero");	
 		
-		//map selection panel
+		//Map Selection Panel
 		mapSelectionPanel = new JPanel();
 		mapSelectionPanel.setLayout(new BoxLayout(mapSelectionPanel, BoxLayout.PAGE_AXIS));
 		mapSelectionPanel.setBackground(Color.BLACK);
-		JPanel firstM = new JPanel(new FlowLayout(FlowLayout.CENTER));
-		firstM.setBackground(Color.BLACK);
-		JLabel selMap = new JLabel("Select map: ");
-		selMap.setForeground(Color.YELLOW);
-		selMap.setFont(new Font("Book Antiqua", Font.BOLD|Font.BOLD, 20));
-		mapList = new JComboBox<String>(maps);
-		mapList.setSelectedIndex(0);
-		mapList.setBackground(Color.BLACK);
-		mapList.setForeground(Color.YELLOW);
-		mapList.setFont(new Font("Book Antiqua", Font.BOLD|Font.BOLD, 20));
+		LMPanel firstM = new LMPanel();
+		LMLabel selMap = new LMLabel("Select map: ", defCol);
+		mapList = new LMComboBox(maps, defCol);
 		firstM.add(selMap);
 		firstM.add(mapList);
 		mapSelectionPanel.add(firstM);
-		JPanel secondM = new JPanel(new FlowLayout(FlowLayout.CENTER));
-		secondM.setBackground(Color.BLACK);
-		mapSaveButton = new JButton("Next");
-		mapSaveButton.setBackground(Color.BLACK);
-		mapSaveButton.setForeground(Color.YELLOW);
-		mapSaveButton.setFont(new Font("Book Antiqua", Font.BOLD|Font.BOLD, 20));
-		mapSaveButton.setSize( new Dimension( 500, 50 ) );
-		mapSaveButton.setBorderPainted(false);
+		LMPanel secondM = new LMPanel();
+		mapSaveButton = new LMButton("Next", defCol);
 		mapSaveButton.addActionListener(this);
 		secondM.add(mapSaveButton);
 		mapSelectionPanel.add(secondM);
 		add(mapSelectionPanel, "map");			
 		
-		//timer selection panel
+		//Timer Selection Panel
 		timerSelectionPanel = new JPanel();
 		timerSelectionPanel.setLayout(new BoxLayout(timerSelectionPanel, BoxLayout.PAGE_AXIS));
 		timerSelectionPanel.setBackground(Color.BLACK);
-		JPanel firstT = new JPanel(new FlowLayout(FlowLayout.CENTER));
-		firstT.setBackground(Color.BLACK);
-		JLabel selT = new JLabel("Time in seconds: ");
-		selT.setForeground(Color.YELLOW);
-		selT.setFont(new Font("Book Antiqua", Font.BOLD|Font.BOLD, 20));
-	    timer = new JTextField();
+		LMPanel firstT = new LMPanel();
+		LMLabel selT = new LMLabel("Time in seconds: ", defCol);
+	    timer = new LMTextField(defCol);
 	    timer.setText("60");
-		timer.setBackground(Color.BLACK);
-		timer.setForeground(Color.YELLOW);
-		timer.setFont(new Font("Book Antiqua", Font.BOLD|Font.BOLD, 20));
-		timer.setPreferredSize( new Dimension( 500, 50 ));
 		firstT.add(selT);
 		firstT.add(timer);
 		timerSelectionPanel.add(firstT);
-		JPanel secondT = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		LMPanel secondT = new LMPanel();
 		secondT.setBackground(Color.BLACK);
-		timerSaveButton = new JButton("Next");
-		timerSaveButton.setBackground(Color.BLACK);
-		timerSaveButton.setForeground(Color.YELLOW);
-		timerSaveButton.setFont(new Font("Book Antiqua", Font.BOLD|Font.BOLD, 20));
-		timerSaveButton.setSize( new Dimension( 500, 50 ) );
-		timerSaveButton.setBorderPainted(false);
+		timerSaveButton = new LMButton("Next", defCol);
 		timerSaveButton.addActionListener(this);
 		secondT.add(timerSaveButton);
 		timerSelectionPanel.add(secondT);
-		timerMessage = new JLabel("Please enter a valid value, i.e. (30-300)");
-		timerMessage.setForeground(Color.YELLOW);
-		timerMessage.setFont(new Font("Book Antiqua", Font.BOLD|Font.BOLD, 20));
+		timerMessage = new LMLabel("Please enter a valid value, i.e. (30-300)", defCol);
 		timerMessage.setAlignmentX(CENTER_ALIGNMENT);
 		timerSelectionPanel.add(timerMessage);
 		add(timerSelectionPanel, "time");	
@@ -186,38 +130,22 @@ public class GameCreatorView extends JPanel implements ActionListener
 		gameReadyPanel = new JPanel();
 		gameReadyPanel.setLayout(new BoxLayout(gameReadyPanel, BoxLayout.PAGE_AXIS));
 		gameReadyPanel.setBackground(Color.BLACK);
-		JPanel firstG = new JPanel(new FlowLayout(FlowLayout.CENTER));
-		firstG.setBackground(Color.BLACK);
-		game = new JTextArea();
-		game.setBackground(Color.BLACK);
-		game.setForeground(Color.YELLOW);
-		game.setFont(new Font("Book Antiqua", Font.BOLD|Font.BOLD, 20));
+		LMPanel firstG = new LMPanel();
+		game = new LMTextArea("", defCol);
 		firstG.add(game);
 		gameReadyPanel.add(firstG);
-		JPanel secondG = new JPanel(new FlowLayout(FlowLayout.CENTER));
-		secondG.setBackground(Color.BLACK);
-		startGameButton = new JButton("Start");
-		startGameButton.setBackground(Color.BLACK);
-		startGameButton.setForeground(Color.YELLOW);
-		startGameButton.setFont(new Font("Book Antiqua", Font.BOLD|Font.BOLD, 20));
-		startGameButton.setSize( new Dimension( 500, 50 ) );
-		startGameButton.setBorderPainted(false);
+		LMPanel secondG = new LMPanel();
+		startGameButton = new LMButton("Start", defCol);
 		startGameButton.addActionListener(this);
 		secondG.add(startGameButton);
 		gameReadyPanel.add(secondG);
-		JPanel thirdG = new JPanel(new FlowLayout(FlowLayout.CENTER));
-		thirdG.setBackground(Color.BLACK);
-		mainMenuButton = new JButton("Main Menu");
-		mainMenuButton.setBackground(Color.BLACK);
-		mainMenuButton.setForeground(Color.YELLOW);
-		mainMenuButton.setFont(new Font("Book Antiqua", Font.BOLD|Font.BOLD, 20));
-		mainMenuButton.setSize( new Dimension( 500, 50 ) );
-		mainMenuButton.setBorderPainted(false);
+		LMPanel thirdG = new LMPanel();
+		mainMenuButton = new LMButton("Main Menu", defCol);
 		mainMenuButton.addActionListener(this);
 		thirdG.add(mainMenuButton);
-		gameReadyPanel.add(thirdG);
-	
-		add(gameReadyPanel, "start");	
+		gameReadyPanel.add(thirdG);	
+		add(gameReadyPanel, "start");
+		
 		cl.show(this, "bot");
 	}
 
@@ -312,7 +240,10 @@ public class GameCreatorView extends JPanel implements ActionListener
 			frame.getLayout().show(frame.getCards(), "main");
 		}
 	}
-	
-	
-	
+
+	@Override
+	public void updateView() 
+	{
+		repaint();
+	}			
 }

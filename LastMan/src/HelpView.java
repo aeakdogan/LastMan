@@ -2,23 +2,24 @@ import java.awt.event.ActionListener;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
-import javax.swing.JButton;
+import LMGraphics.LMButton;
+import LMGraphics.LMPanel;
+import LMGraphics.LMTextArea;
 import javax.swing.BoxLayout; 
 
-public class HelpView extends JPanel implements ActionListener {
-
+public class HelpView extends JPanel implements ActionListener
+{
+	//Constants
 	private static final long serialVersionUID = -9093209230812299651L;
 	
 	//Properties
-	private JButton menuButton; 
+	private LMButton menuButton; 
 	private GameFrame frame;
 	
-	//constructor
+	//Constructor
 	public HelpView(GameFrame frame)
 	{
 		
@@ -27,27 +28,18 @@ public class HelpView extends JPanel implements ActionListener {
 		setPreferredSize(new Dimension(1100,600)); 
 		setBackground(Color.BLACK);
 		
-		JPanel pan1 = new JPanel(new FlowLayout(FlowLayout.CENTER));
-		pan1.setBackground(Color.BLACK);
-		JTextArea helpText = new JTextArea("HELP\nUse arrow keys to move your character.\n"+ "Use the SPACE key to use your weapon.\n" + "Use the S key to use your special weapon."); 
-		helpText.setSize(400,400);
-		helpText.setForeground(Color.RED);
-		helpText.setBackground(Color.BLACK);
-		helpText.setLocation(350, 100);
+		Color defCol = Color.RED;
+		
+		LMPanel pan1 = new LMPanel();
+		LMTextArea helpText = new LMTextArea(
+				"HELP\nUse arrow keys to move your character.\n"+ "Use the SPACE key to use your default weapon.\n" + "Use the S key to use your special weapon.\n\n" +
+				           "Character\tHealth\tSpeed\nKil\t600\t10\nAyibogan\t1000\t2\nNemo\t800\t5\n\n"+ "Your default weapon damages both your enemies and you.\n" +
+				           "Your special weapon damages only your enemies, and it has extra damage.", defCol); 
 		helpText.setFont(new Font("Book Antiqua", Font.BOLD|Font.BOLD, 20));
 		pan1.add(helpText);
 	
-		JPanel pan2 = new JPanel(new FlowLayout(FlowLayout.CENTER));
-		pan2.setBackground(Color.BLACK);
-		menuButton = new JButton("Main Menu");
-		menuButton.setSize(180,60);
-		menuButton.setLocation(900,500);
-		menuButton.setHorizontalTextPosition(JButton.CENTER);
-		menuButton.setVerticalTextPosition(JButton.CENTER);
-		menuButton.setForeground(Color.RED); 
-		menuButton.setBackground(Color.BLACK);
-		menuButton.setFont(new Font("Book Antiqua", Font.BOLD|Font.BOLD, 20));
-		menuButton.setBorderPainted(false);
+		LMPanel pan2 = new LMPanel();
+		menuButton = new LMButton("Main Menu", defCol);
 		menuButton.addActionListener(this);
 		pan2.add(menuButton);
 	
@@ -55,7 +47,7 @@ public class HelpView extends JPanel implements ActionListener {
 		add(pan2); 		
 	}
 	
-	//methods
+	//Methods
 	public void actionPerformed(ActionEvent e)
 	{
 		if(e.getSource() == menuButton)
@@ -67,5 +59,4 @@ public class HelpView extends JPanel implements ActionListener {
 	{
 		super.paintComponent((java.awt.Graphics) g);
 	}
-	
 }

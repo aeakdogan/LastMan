@@ -1,7 +1,6 @@
-
 public class PlayerController extends CharacterController 
 {
-	//constructor
+	//Constructor
 	public PlayerController(Character c)
 	{
 		setCharacter(c);

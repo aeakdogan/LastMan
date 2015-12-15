@@ -1,9 +1,9 @@
-
-public class Location {
-
-	//constants
+public class Location 
+{
+	//Constants
 	public static final int BLOCK = 8;
 	public static final int CELL = 40;
+	public static final int CHAR_CELL = 40;
 	public static final int DIRECTION_UP = 1;
 	public static final int DIRECTION_RIGHT = 2;
 	public static final int DIRECTION_LEFT = 3;
@@ -13,28 +13,34 @@ public class Location {
 	public static final int X_LIMIT = CELL * X_WALL_COUNT;
 	public static final int Y_LIMIT = CELL * Y_WALL_COUNT;
 	
-	//properties
+	//Properties
 	private int x;
 	private int y;
 	
-	//constructor
-	public Location(int x, int y) {
+	//Constructor
+	public Location(int x, int y) 
+	{
 		this.x = x;
 		this.y = y;
 	}
 	
-	//methods
-	public int getX() {
+	//Methods
+	public int getX() 
+	{
 		return x;
 	}
 
-	public void setX(int x) {
+	public void setX(int x) 
+	{
 		this.x = x;
 	}
-	public int getY() {
+	
+	public int getY() 
+	{
 		return y;
 	}
-	public void setY(int y) {
+	public void setY(int y) 
+	{
 		this.y = y;
 	}
 	
@@ -44,5 +50,4 @@ public class Location {
 			return true;
 		return false;
 	}
-		
 }

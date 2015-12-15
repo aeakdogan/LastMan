@@ -1,18 +1,17 @@
-
 public class GameController 
 {
-	//properties
+	//Properties
 	private Game game;
-	private int packC;
+	private int packTime;
 	
-	//constructor
+	//Constructor
 	public GameController()
 	{
 		game = new Game();
-		packC = 0;
+		packTime = 0;
 	}
 
-	//methods
+	//Methods
 	public void charactersSelected(int no, int level)
 	{
 		game.createBots(no, level);
@@ -31,17 +30,9 @@ public class GameController
 	
 	private boolean isValidTimer(int t)
 	{
-		if(t > 30 && t < 300)
+		if(t >= 30 && t <= 300)
 			return true;
 		return false;
-	}
-	
-	public Game getGame() {
-		return game;
-	}
-
-	public void setGame(Game game) {
-		this.game = game;
 	}
 
 	public boolean timerSelected(int t)
@@ -66,14 +57,14 @@ public class GameController
 			endGame();
 			return;
 		}
-		if(++packC == Pack.RATE)
+		if(++packTime == Pack.RATE)
 		{
-			int randomX = Location.CELL + (int)(Math.random()*(Location.X_LIMIT - 2*Location.CELL) - Location.CELL + 1);
-			int randomY = Location.CELL + (int)(Math.random()*(Location.Y_LIMIT - 2*Location.CELL) - Location.CELL + 1);
+			int randomX = Location.CELL + (int)(Math.random()*(Location.X_LIMIT - 3*Location.CELL) + 1);
+			int randomY = Location.CELL + (int)(Math.random()*(Location.Y_LIMIT - 3*Location.CELL) + 1);
 			Location loc = new Location(randomX, randomY);
-			int prob = 1 + (int)(Math.random()*3);
+			int prob = (int)(Math.random()*2);
 			Pack newPack;
-			if(prob == 1)
+			if(prob == 0)
 			{
 				newPack = new Pack("healthBoost");
 			}
@@ -81,7 +72,7 @@ public class GameController
 			{
 				newPack = new Pack("weaponBoost");
 			}
-			packC = 0;
+			packTime = 0;
 			game.getGameMap().addToCurrentPacks(loc, newPack);
 		}
 		game.update(elapsed);
@@ -89,7 +80,7 @@ public class GameController
 	
 	public void endGame()
 	{
-		String resultScreenInfo = "GAME TIME: " + game.getCurrentTime();
+		String resultScreenInfo = "";
 		for(int i = 0; i < game.getDeadCharacters().size(); i++)
 		{
 			if(game.getDeadCharacters().get(i) == game.getPlayer())
@@ -108,7 +99,17 @@ public class GameController
 				resultScreenInfo = "BOT: " + game.getAliveCharacters().get(i).getHero().getId() + 
 				", HP: " + game.getAliveCharacters().get(i).gethP() + ", ALIVE\n" + resultScreenInfo;
 		}
-		
+		resultScreenInfo = "GAME TIME: " + game.getCurrentTime() + "\n" + resultScreenInfo;
 		game.endGame(resultScreenInfo);
+	}
+	
+	public Game getGame() 
+	{
+		return game;
+	}
+
+	public void setGame(Game game) 
+	{
+		this.game = game;
 	}
 }

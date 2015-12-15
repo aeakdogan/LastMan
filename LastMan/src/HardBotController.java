@@ -1,12 +1,13 @@
-
 public class HardBotController extends BotController
 {
 
+	//Constructor
 	public HardBotController(Character c) 
 	{
 		character = c;
 	}
 
+	//Methods
 	@Override
 	public boolean makeRandomMove() 
 	{
@@ -28,12 +29,10 @@ public class HardBotController extends BotController
 		{
 			int dir = 1 + (int)(Math.random()*4);
 			directionKeyPressed(dir);
-			for(int i = 0; i < BotController.HARD_P; i++)
+			for(int i = 0; i < BotController.HARD_MOVE; i++)
 				directionKeyPressed(dir);
 			return true;
 		}
-		
 		return false;
 	}
-
 }

@@ -1,8 +1,12 @@
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Scanner;
 
-public class Game {
+public class Game implements LastManModel
+{
 
-	//properties
+	//Properties
 	private ArrayList<Character> aliveCharacters;
 	private ArrayList<Character> deadCharacters;
 	private ArrayList<Character> bots;
@@ -13,7 +17,7 @@ public class Game {
 	private int currentTime;
 	private boolean state;
 	
-	//constructor
+	//Constructor
 	public Game() 
 	{
 		aliveCharacters = new ArrayList<Character>();
@@ -23,31 +27,35 @@ public class Game {
 		state = false;
 	}
 	
-	//methods
+	//Methods
 	public void createBots(int no, int level)
 	{
 		for( int i = 0; i < no; i++)
 		{
-			int prob = 0 + (int)(Math.random()*101);
-			String randomHero;
-			if(prob < 50)
-				randomHero = "kil";
-			else
-				randomHero = "ayibogan";
-			Character newBot = new Character(randomHero, level, this);
-			aliveCharacters.add(newBot);
-			bots.add(newBot);
+			try 
+			{
+				Scanner heroInfo;
+				heroInfo = new Scanner(new FileReader("docs//herolist.txt"));
+				int heroSize = heroInfo.nextInt();
+				String[] heroes = new String[heroSize];
+				int index = 0;
+				while (heroInfo.hasNext())
+				{
+					heroes[index++] = heroInfo.next();
+				}
+				heroInfo.close();
+				int prob = (int)(Math.random()*(heroSize));
+				Character newBot = new Character(heroes[prob], level, this);
+				aliveCharacters.add(newBot);
+				bots.add(newBot);
+			} 
+			catch (FileNotFoundException e) 
+			{
+				e.printStackTrace();
+			}			
 		}
 	}
-
-	public ArrayList<Character> getBots() {
-		return bots;
-	}
-
-	public void setBots(ArrayList<Character> bots) {
-		this.bots = bots;
-	}
-
+	
 	public boolean isReady()
 	{
 		if(aliveCharacters == null)
@@ -106,74 +114,100 @@ public class Game {
 		view.updateView();		
 	}
 	
-	public ArrayList<Character> getAliveCharacters() {
-		return aliveCharacters;
-	}
-
-	public void setAliveCharacters(ArrayList<Character> aliveCharacters) {
-		this.aliveCharacters = aliveCharacters;
-	}
-
-	public ArrayList<Character> getDeadCharacters() {
-		return deadCharacters;
-	}
-
-	public void setDeadCharacters(ArrayList<Character> deadCharacters) {
-		this.deadCharacters = deadCharacters;
-	}
-
-	public Character getPlayer() {
-		return player;
-	}
-
-	public void setPlayer(Character player) {
-		this.player = player;
-		aliveCharacters.add(player);
-	}
-
-	public GameView getView() {
-		return view;
-	}
-
-	public void setView(GameView view) {
-		this.view = view;
-	}
-
-	public int getMaxTime() {
-		return maxTime;
-	}
-
-	public void setMaxTime(int maxTime) {
-		this.maxTime = maxTime;
-	}
-
-	public int getCurrentTime() {
-		return currentTime;
-	}
-
-	public void setCurrentTime(int currentTime) {
-		this.currentTime = currentTime;
-	}
-
-	public boolean isState() {
-		return state;
-	}
-
-	public void setState(boolean state) {
-		this.state = state;
-	}
-
-	public GameMap getGameMap() {
-		return gameMap;
-	}
-
-	public void setGameMap(GameMap gameMap) {
-		this.gameMap = gameMap;
-	}
-
 	public void endGame(String resultScreenInfo) 
 	{
 		state = !state;
 		view.endGame(resultScreenInfo);
+	}
+
+	public ArrayList<Character> getBots() 
+	{
+		return bots;
+	}
+
+	public void setBots(ArrayList<Character> bots) 
+	{
+		this.bots = bots;
+	}
+	
+	public ArrayList<Character> getAliveCharacters() 
+	{
+		return aliveCharacters;
+	}
+
+	public void setAliveCharacters(ArrayList<Character> aliveCharacters) 
+	{
+		this.aliveCharacters = aliveCharacters;
+	}
+
+	public ArrayList<Character> getDeadCharacters() 
+	{
+		return deadCharacters;
+	}
+
+	public void setDeadCharacters(ArrayList<Character> deadCharacters) 
+	{
+		this.deadCharacters = deadCharacters;
+	}
+
+	public Character getPlayer() 
+	{
+		return player;
+	}
+
+	public void setPlayer(Character player) 
+	{
+		this.player = player;
+		aliveCharacters.add(player);
+	}
+
+	public GameView getView() 
+	{
+		return view;
+	}
+
+	public void setView(GameView view) 
+	{
+		this.view = view;
+	}
+
+	public int getMaxTime() 
+	{
+		return maxTime;
+	}
+
+	public void setMaxTime(int maxTime) 
+	{
+		this.maxTime = maxTime;
+	}
+
+	public int getCurrentTime() 
+	{
+		return currentTime;
+	}
+
+	public void setCurrentTime(int currentTime) 
+	{
+		this.currentTime = currentTime;
+	}
+
+	public boolean isState() 
+	{
+		return state;
+	}
+
+	public void setState(boolean state) 
+	{
+		this.state = state;
+	}
+
+	public GameMap getGameMap() 
+	{
+		return gameMap;
+	}
+
+	public void setGameMap(GameMap gameMap) 
+	{
+		this.gameMap = gameMap;
 	}
 }

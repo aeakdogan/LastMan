@@ -5,11 +5,11 @@ import java.util.Scanner;
 
 public class LMap 
 {
-	//properties
+	//Properties
 	private String id;
 	private ArrayList<Wall> walls;
 	
-	//constructor
+	//Constructor
 	public LMap(String id)
 	{
 		try 
@@ -30,31 +30,34 @@ public class LMap
 					int value = mapInfo.nextInt();
 					if(value == 1)
 					{
-						walls.add(new Wall(new Location(x*40, y*40), 1));
+						walls.add(new Wall(new Location(x*Location.CELL, y*Location.CELL), 1));
 					}
 					if(value == 2)
 					{
-						walls.add(new Wall(new Location(x*40, y*40), 2));
+						walls.add(new Wall(new Location(x*Location.CELL, y*Location.CELL), 2));
 					}
 				}
 			}
 						
 			mapInfo.close();	
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
+		} catch (FileNotFoundException e) 
+		{
 			e.printStackTrace();
 		}
 	}
 
-	public String getId() {
+	public String getId() 
+	{
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(String id) 
+	{
 		this.id = id;
 	}
 
-	public ArrayList<Wall> getWalls() {
+	public ArrayList<Wall> getWalls() 
+	{
 		return walls;
 	}
 	
@@ -63,7 +66,8 @@ public class LMap
 		walls.remove(w);
 	}
 
-	public void setWalls(ArrayList<Wall> walls) {
+	public void setWalls(ArrayList<Wall> walls) 
+	{
 		this.walls = walls;
 	}
 }

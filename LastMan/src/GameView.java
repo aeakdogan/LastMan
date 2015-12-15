@@ -2,7 +2,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -14,7 +13,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
-
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -22,26 +20,29 @@ import javax.sound.sampled.FloatControl;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
+import LMGraphics.LMButton;
+import LMGraphics.LMPanel;
+import LMGraphics.LMTextArea;
 
-public class GameView extends JPanel implements ActionListener
+public class GameView extends JPanel implements ActionListener, LastManView
 {
-
+	//Constants
 	private static final long serialVersionUID = 4375482311151482280L;
+	
+	//Properties
 	private Game game;
 	private GameController gameC;
 	private PlayerController playerC;
 	private ArrayList<BotController> botCs;
-	private GameFrame frame;	
+	private GameFrame frame;
 	private Timer timer;	
 	private GamePanel gamePanel;	
-	private JTextArea info;
-	private JButton endGameButton;	
+	private LMTextArea info;
+	private LMButton endGameButton;	
 	private Sound background;
 	
-	
+	//Constructor
 	public GameView(GameController gC, GameFrame f) 
 	{
 		frame = f;
@@ -68,62 +69,48 @@ public class GameView extends JPanel implements ActionListener
 		
 		setLayout(new BorderLayout());
 		setSize(1100, 500);
-		setBackground(Color.MAGENTA);
 		
 		gamePanel = new GamePanel();
 		gamePanel.setSize(new Dimension(Location.X_LIMIT, Location.Y_LIMIT));
 		gamePanel.setBackground(Color.BLACK);
 		gamePanel.addKeyListener(gamePanel);
 		
-		
 		JPanel endG = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		endG.setBackground(Color.BLACK);
-		endGameButton = new JButton("End Game");
-		endGameButton.setSize(180,60);
-		endGameButton.setBackground(Color.BLACK);
-		endGameButton.setForeground(Color.RED);
-		endGameButton.setBorderPainted(false);
-		endGameButton.setFont(new Font("Book Antiqua", Font.BOLD|Font.BOLD, 20));
+		endGameButton = new LMButton("End Game", Color.RED);
 		endGameButton.addActionListener(this);
 		endG.add(endGameButton);
 	
-		
-		JPanel infoPanel = new JPanel();
-		infoPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
-		infoPanel.setPreferredSize(new Dimension(200, 500));
-		infoPanel.setBackground(Color.BLACK);
+		JPanel infoPanel = new LMPanel();
 		String infoText = "Time Left: " + (game.getMaxTime() - game.getCurrentTime()) + "\nYour Hero: " + game.getPlayer().getHero().getId()
 				+ "\nYour HP: " + game.getPlayer().gethP()
-				+"\nTime Left: " + game.getPlayer().getNoWeaponTwoUsageFor();
+				+"\nS.W. Limit: " + game.getPlayer().getNoWeaponTwoUsageFor();
 		for (Character c : game.getBots())
 		{
-			infoText += "\nBot Hero: " + c.getHero().getId() + "\nHP: " + c.gethP() + "\nTime Left: " + c.getNoWeaponTwoUsageFor();
+			infoText += "\nBot Hero: " + c.getHero().getId() + "\nHP: " + c.gethP() + "\nS.W. Limit: " + c.getNoWeaponTwoUsageFor();
 		}
-		info = new JTextArea(infoText);
-		info.setFont(new Font("Book Antiqua", Font.BOLD|Font.BOLD, 20));
-		info.setSize(400,400);
-		info.setForeground(Color.YELLOW);
-		info.setBackground(Color.BLACK);
+		info = new LMTextArea(infoText, Color.YELLOW);
 		infoPanel.add(info);
 			
-		
 		add(endG,BorderLayout.PAGE_START);
 		add(gamePanel,BorderLayout.CENTER);
 		add(infoPanel,BorderLayout.LINE_END);
 				
 		timer = new Timer();
-		timer.schedule(new TimerTask() {
-			
+		timer.schedule(new TimerTask() 
+		{
 			@Override
 			public void run()
 			{
 				for(BotController bc : botCs)
 				{
-					bc.makeRandomMove();
+					if(bc.getCharacter().gethP()>0)
+						bc.makeRandomMove();
 				}
 				gameC.updateGame(1);
 			}
 		}, 0, 1000);
+		
 		gameC.startGame();		
 	}	
 	
@@ -136,13 +123,42 @@ public class GameView extends JPanel implements ActionListener
 	{	
 		String infoText = "Time Left: " + (game.getMaxTime() - game.getCurrentTime()) + "\nYour Hero: " + game.getPlayer().getHero().getId()
 				+ "\nYour HP: " + game.getPlayer().gethP()
-				+"\nTime Left: " + game.getPlayer().getNoWeaponTwoUsageFor();
+				+"\nS.W. Limit: " + game.getPlayer().getNoWeaponTwoUsageFor();
 		for (Character c : game.getBots())
 		{
-			infoText += "\nBot Hero: " + c.getHero().getId() + "\nHP: " + c.gethP() + "\nTime Left: " + c.getNoWeaponTwoUsageFor();
+			infoText += "\nBot Hero: " + c.getHero().getId() + "\nHP: " + c.gethP() + "\nS.W. Limit: " + c.getNoWeaponTwoUsageFor();
 		}
 		info.setText(infoText);
 		repaint();
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) 
+	{
+		if(e.getSource() == endGameButton)
+			gameC.endGame();
+	}
+	
+	public void endGame(String resultScreenInfo) 
+	{	
+		timer.cancel();
+		if(background != null)
+			background.musicStop();
+		ResultsView rv = new ResultsView(resultScreenInfo, frame);
+		frame.getCards().add(rv, "result");
+		frame.getLayout().show(frame.getCards(), "result");
+	}
+	
+	public void playSound(String filename)
+	{
+		Sound sound;
+		sound = new Sound(filename);
+		sound.musicStart();		
+	}
+	
+	public ArrayList<BotController> getBotCs()
+	{
+		return botCs;
 	}
 	
 	public class GamePanel extends JPanel implements KeyListener
@@ -160,11 +176,11 @@ public class GameView extends JPanel implements ActionListener
 			Image weaponpackImage = new ImageIcon("images\\weaponpack.png").getImage();
 			
 			int cellSize = Location.CELL;
-			
-			
+			int charSize = Location.CHAR_CELL;
 
-			for(Wall wall : game.getGameMap().getMap().getWalls())
+			for(int i = 0; i < game.getGameMap().getMap().getWalls().size(); i++)
 			{
+				Wall wall = game.getGameMap().getMap().getWalls().get(i);
 				if(wall.getResistance() == Wall.SOFT)
 					g.drawImage(softwImage,wall.getLocation().getX(),wall.getLocation().getY(),cellSize,cellSize,null);
 				else
@@ -196,9 +212,11 @@ public class GameView extends JPanel implements ActionListener
 			for(Character c : game.getAliveCharacters())
 			{
 				Image charImage = new ImageIcon("images\\" + c.getHero().getId() + ".png").getImage();
-				g.drawImage(charImage, c.getLocation().getX(), c.getLocation().getY(), cellSize, cellSize, null);
+				g.drawImage(charImage, c.getLocation().getX(), c.getLocation().getY(), charSize, charSize, null);
 			}
 			
+			Image logo = new ImageIcon("images\\logo.png").getImage();
+			g.drawImage(logo, 400, 440, 2*cellSize, 2*cellSize, null);			
 		}
 		
 		public void addNotify() 
@@ -238,40 +256,16 @@ public class GameView extends JPanel implements ActionListener
 		}
 
 		@Override
-		public void keyReleased(KeyEvent e) {
-			// TODO Auto-generated method stub
+		public void keyReleased(KeyEvent e) 
+		{
 			
 		}
 
 		@Override
-		public void keyTyped(KeyEvent e) {
-			// TODO Auto-generated method stub
-			
+		public void keyTyped(KeyEvent e) 
+		{
+		
 		}
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) 
-	{
-		if(e.getSource() == endGameButton)
-			gameC.endGame();
-	}
-	
-	public void endGame(String resultScreenInfo) 
-	{	
-		timer.cancel();
-		if(background != null)
-			background.musicStop();
-		ResultsView rv = new ResultsView(resultScreenInfo, frame);
-		frame.getCards().add(rv, "result");
-		frame.getLayout().show(frame.getCards(), "result");
-	}
-	
-	public void playSound(String filename)
-	{
-		Sound sound;
-		sound = new Sound(filename);
-		sound.musicStart();		
 	}
 	
 	//http://helpdesk.objects.com.au/java/how-to-control-volume-of-audio-clip
@@ -302,7 +296,7 @@ public class GameView extends JPanel implements ActionListener
 	        clip.start();
 	    }
 
-	    public void musicStop ()
+	    public void musicStop()
 	    {
 	        clip.stop();
 	    }

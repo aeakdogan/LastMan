@@ -5,65 +5,67 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton; 
 import javax.swing.JPanel; 
 
-
-public class MainView extends JPanel implements ActionListener {
-	
-	
+public class MainView extends JPanel implements ActionListener 
+{
+	//Constants	
 	private static final long serialVersionUID = -8378862729669669738L;
-	private JButton newGameButton;
-	private JButton settingsButton;
-	private JButton helpButton;
-	private JButton creditsButton;
+	
+	//Properties
+	private JButton newGameButton, settingsButton, helpButton, creditsButton;
 	private GameFrame frame;
 	
 	public MainView(GameFrame frame)
 	{
-		
 		this.frame = frame;
 		setLocation(0,0); 
 		setSize(1100,600); 
 		setLayout(null); 
 		
-		//NEWGAME BUTTON
+		//NewGame Button
 		newGameButton = new JButton(); 		
 		newGameButton.setOpaque(false);
-		newGameButton.setContentAreaFilled(false); 		
+		newGameButton.setContentAreaFilled(false);
+		newGameButton.setBorderPainted(false);
 		newGameButton.setSize(180,60);
 		newGameButton.setLocation(375, 415);
 		newGameButton.addActionListener(this);
 		add(newGameButton); 
 		
 		
-		//HELP BUTTON
+		//Help Button
 		helpButton = new JButton(); 		
 		helpButton.setOpaque(false);
 		helpButton.setContentAreaFilled(false);
 		helpButton.setSize(180,60);
 		helpButton.setLocation(580, 415);
+		helpButton.setBorderPainted(false);
 		helpButton.addActionListener(this);
 		add(helpButton);		
 		
-		//SETTINGS BUTTON
+		//Settings Button
 		settingsButton = new JButton(); 		
 		settingsButton.setOpaque(false);
 		settingsButton.setContentAreaFilled(false); 		
 		settingsButton.setSize(180,60);
 		settingsButton.setLocation(375, 500);
+		settingsButton.setBorderPainted(false);
 		settingsButton.addActionListener(this);
 		add(settingsButton);
 		
 		
-		//CREDITS BUTTON 
+		//Credits Button
 		creditsButton = new JButton(); 		
 		creditsButton.setOpaque(false);
 		creditsButton.setContentAreaFilled(false); 		
 		creditsButton.setSize(180,60);
 		creditsButton.setLocation(580, 500);
+		creditsButton.setBorderPainted(false);
 		creditsButton.addActionListener(this);
 		add(creditsButton);
 		
-		
 	}
+	
+	//Methods
 	public void actionPerformed(ActionEvent e)
 	{
 		if(e.getSource() == newGameButton)
@@ -92,11 +94,9 @@ public class MainView extends JPanel implements ActionListener {
 		}
 	}
 	
-	public void paintComponent(Graphics g){
-		
+	public void paintComponent(Graphics g)
+	{	
 		String path = "images//mainMenu.png"; 
-		
 		g.drawImage(new ImageIcon(path).getImage(),0,0,1100,600,null); 
 	}
-
 }

@@ -1,21 +1,19 @@
 import java.awt.CardLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class GameFrame extends JFrame implements ActionListener, WindowListener
+public class GameFrame extends JFrame
 {
 
+	//Constants
 	private static final long serialVersionUID = 5815024148421858765L;
 
-	//properties
+	//Properties
 	private CardLayout cl;
 	private JPanel cards;
 	private Settings settings;
-	//constructor
+	
+	//Constructor
 	public GameFrame()
 	{
 		settings = new Settings();
@@ -27,9 +25,8 @@ public class GameFrame extends JFrame implements ActionListener, WindowListener
 		setVisible(true);
 		cl = new CardLayout();
 		cards = new JPanel(cl);
-		addWindowListener(this);
 		
-		//main view
+		//Main View
 		MainView mv = new MainView(this);
 		cards.add(mv, "main");
 		cl.show(cards, "main");
@@ -37,18 +34,7 @@ public class GameFrame extends JFrame implements ActionListener, WindowListener
 		add(cards);
 	}
 	
-	//methods
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	//Methods
 	public CardLayout getLayout() 
 	{
 		return cl;
@@ -59,60 +45,13 @@ public class GameFrame extends JFrame implements ActionListener, WindowListener
 		return cards;
 	}
 
-	@Override
-	public void windowActivated(WindowEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void windowClosed(WindowEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void windowClosing(WindowEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void windowDeactivated(WindowEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void windowDeiconified(WindowEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void windowIconified(WindowEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void windowOpened(WindowEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public Settings getSettings() {
+	public Settings getSettings() 
+	{
 		return settings;
 	}
 
-	public void setSettings(Settings settings) {
+	public void setSettings(Settings settings) 
+	{
 		this.settings = settings;
 	}
-
 }
