@@ -1,3 +1,12 @@
+/**
+ * @author Burcu Canakci
+ *
+ * Weapon class holds properties of weapons
+ * There are 2 different weapon type which are Default Weapon and Special Weapon
+ * and this class determines these specifications such as ranges and delay times. 
+ *
+ * 
+ */
 public class Weapon 
 {
 	//Constants
@@ -11,9 +20,16 @@ public class Weapon
 	private int delayTime;
 	private int time;
 	private boolean firstType;
-	private Character character;	
-	
-	//Constructor	
+	private Character character;
+		
+	/**
+	 * Initializing weapon
+	 * @param range determine range of the weapon
+	 * @param damage determine damage of the weapon
+	 * @param delayTime determine cooldown time of the weapon
+	 * @param firstType determine type of the weapon
+	 */
+	//Constructor
 	public Weapon(int range, int damage, int delayTime, boolean firstType) 
 	{
 		this.range = range;
